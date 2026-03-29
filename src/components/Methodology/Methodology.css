@@ -1,0 +1,228 @@
+/* ── Methodology Section ── */
+.methodology-section {
+    background: var(--bg-surface);
+    padding: var(--space-96) 0;
+    overflow: hidden;
+    transition: background 0.4s ease;
+}
+
+.methodology-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-24);
+}
+
+/* Header */
+.methodology-header {
+    text-align: center;
+    margin-bottom: var(--space-72);
+}
+
+.methodology-header .headline {
+    text-transform: uppercase;
+    font-family: var(--font-display);
+    font-weight: 900;
+    font-size: 1.25rem;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    white-space: nowrap;
+    margin-bottom: var(--space-24);
+}
+
+.methodology-title .accent {
+    color: var(--accent);
+}
+
+.methodology-subtitle {
+    max-width: 640px;
+    margin: 0 auto;
+    font-size: 1.05rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+}
+
+/* Desktop Timeline */
+.methodology-timeline {
+    position: relative;
+    margin-bottom: var(--space-96);
+}
+
+.desktop-only { display: none; }
+
+@media (min-width: 1024px) {
+    .desktop-only { display: block; }
+    .mobile-only { display: none; }
+}
+
+/* Progress Lines */
+.progress-line-bg {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: var(--border);
+    transform: translateY(-50%);
+    z-index: 0;
+}
+
+.progress-line-fill {
+    position: absolute;
+    top: 50%;
+    left: 0;
+    width: 0%;
+    height: 4px;
+    background: var(--accent);
+    transform: translateY(-50%);
+    z-index: 1;
+    transition: width 0.8s ease-out;
+}
+
+/* Stages Grid */
+.stages-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: var(--space-24);
+    position: relative;
+    z-index: 10;
+}
+
+/* Card */
+.methodology-card {
+    background: var(--bg-card);
+    padding: var(--space-32);
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.methodology-card:hover {
+    border-color: var(--accent);
+    box-shadow: var(--shadow-accent);
+    transform: translateY(-8px);
+}
+
+.stage-number {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: var(--space-24);
+    box-shadow: 0 4px 16px var(--accent-glow);
+}
+
+.stage-title {
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-16);
+}
+
+.stage-desc {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+}
+
+/* Reveal animation */
+.reveal-item {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+}
+
+.reveal-item.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Mobile Stack */
+.methodology-mobile {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-32);
+    margin-bottom: var(--space-72);
+}
+
+.mobile-stage {
+    display: flex;
+    gap: var(--space-16);
+    padding: var(--space-24);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--bg-card);
+}
+
+.mobile-num {
+    font-family: var(--font-display);
+    color: var(--accent);
+    font-weight: 600;
+    flex-shrink: 0;
+}
+
+/* CTA */
+.methodology-cta {
+    display: flex;
+    justify-content: center;
+}
+
+.methodology-btn {
+    background: var(--accent);
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    padding: 20px 40px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+}
+
+.methodology-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 32px var(--accent-glow);
+}
+
+.methodology-btn:active {
+    transform: scale(0.95);
+}
+
+/* Glare effect */
+.methodology-btn::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -150%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(to bottom right,
+            transparent 0%,
+            transparent 40%,
+            rgba(255, 255, 255, 0.25) 50%,
+            transparent 60%,
+            transparent 100%);
+    transform: rotate(45deg);
+    transition: all 0.6s ease;
+}
+
+.methodology-btn:hover::after {
+    left: 150%;
+}

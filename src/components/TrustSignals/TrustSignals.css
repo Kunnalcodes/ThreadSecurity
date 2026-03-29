@@ -1,0 +1,158 @@
+/* ── Trust Signals Section ── */
+.trust-signals-section {
+    padding-top: 2.5rem;
+    padding-bottom: 6rem;
+    background-color: var(--bg-surface);
+    position: relative;
+    overflow: hidden;
+    transition: background-color 0.4s ease;
+}
+
+/* Subtle Grid Background */
+.trust-signals-grid-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.03;
+    background-image: radial-gradient(var(--text-muted) 1px, transparent 1px);
+    background-size: 30px 30px;
+}
+
+.trust-signals-container {
+    max-width: 80rem;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    position: relative;
+    z-index: 10;
+}
+
+.trust-signals-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+}
+
+@media (min-width: 768px) {
+    .trust-signals-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+@media (min-width: 1024px) {
+    .trust-signals-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+}
+
+/* Trust Card Standard */
+.trust-card {
+    background-color: var(--bg-card);
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: var(--shadow-sm);
+    border: 1px solid var(--border);
+    transition: all 0.4s cubic-bezier(0.22, 0.8, 0.36, 1);
+    position: relative;
+    cursor: pointer;
+}
+
+.trust-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-accent);
+    border-color: var(--accent-glow);
+}
+
+/* Trust Card Icon Box */
+.trust-card-icon {
+    width: 3rem;
+    height: 3rem;
+    background-color: var(--accent-subtle);
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--accent);
+    margin-bottom: 1.5rem;
+}
+
+/* Trust Card Typo */
+.trust-card-title {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--text-primary);
+}
+
+.trust-card-desc {
+    color: var(--text-secondary);
+    font-size: 0.875rem;
+    line-height: 1.5;
+}
+
+/* Trust Card Special (Badge) */
+.trust-card-special {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--accent);
+    color: white;
+    padding: 2rem;
+    border-radius: 1rem;
+    box-shadow: var(--shadow-lg);
+}
+
+.trust-card-special-icon {
+    display: inline-block;
+    padding: 0.75rem;
+    background-color: rgba(255, 255, 255, 0.2);
+    border-radius: 9999px;
+    margin-bottom: 1rem;
+}
+
+.trust-card-special-subtitle {
+    font-family: var(--font-display);
+    font-size: 0.625rem;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    opacity: 0.8;
+    margin-bottom: 0.25rem;
+}
+
+.trust-card-special-title {
+    font-family: var(--font-display);
+    font-size: 0.875rem;
+    font-weight: 700;
+    line-height: 1.4;
+}
+
+/* Reveal On Scroll Utility */
+.reveal-on-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.reveal-on-scroll.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Glare Hover Utility */
+.glare-hover {
+    position: relative;
+    overflow: hidden;
+}
+
+.glare-hover::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -150%;
+    width: 50%;
+    height: 200%;
+    background: rgba(255, 255, 255, 0.15);
+    transform: rotate(30deg);
+    transition: all 0.5s;
+}
+
+.glare-hover:hover::after {
+    left: 150%;
+}

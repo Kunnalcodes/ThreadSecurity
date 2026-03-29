@@ -1,0 +1,205 @@
+/* ── Roadmap Section ── */
+.roadmap-section {
+    background: var(--bg-primary);
+    padding: var(--space-96) 0;
+    overflow-x: hidden;
+}
+
+.roadmap-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-24);
+}
+
+/* Header */
+.roadmap-header {
+    text-align: center;
+    margin-bottom: var(--space-72);
+}
+
+.roadmap-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(1.8rem, 5vw, 3rem);
+    font-weight: 600;
+    color: var(--text-primary);
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    margin-bottom: var(--space-16);
+}
+
+.roadmap-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 480px;
+    margin: 0 auto;
+}
+
+/* Timeline */
+.roadmap-timeline {
+    position: relative;
+    margin-bottom: var(--space-48);
+}
+
+.roadmap-line-bg,
+.roadmap-line-fill {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .roadmap-line-bg {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 100%;
+        height: 4px;
+        background: var(--border);
+        transform: translateY(-50%);
+        z-index: 0;
+    }
+
+    .roadmap-line-fill {
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        width: 0%;
+        height: 4px;
+        background: var(--accent);
+        transform: translateY(-50%);
+        z-index: 1;
+        box-shadow: 0 0 10px var(--accent-glow);
+        transition: width 0.1s linear;
+    }
+}
+
+/* Tier Cards Row */
+.tiers-row {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-32);
+    position: relative;
+    z-index: 10;
+}
+
+@media (min-width: 768px) {
+    .tiers-row {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: var(--space-16);
+    }
+}
+
+/* Tier Card */
+.tier-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: var(--space-24);
+    border-radius: 16px;
+    position: relative;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    flex: 1;
+}
+
+.tier-card.reveal-active {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+.tier-card:hover {
+    transform: translateY(-8px) !important;
+    box-shadow: 0 10px 30px -10px var(--accent-glow);
+    border-color: var(--accent);
+}
+
+/* Timeline Node */
+.tier-node {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .tier-node {
+        display: block;
+        position: absolute;
+        top: -40px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 24px;
+        height: 24px;
+        background: var(--bg-card);
+        border: 4px solid var(--accent);
+        border-radius: 50%;
+        z-index: 20;
+    }
+}
+
+/* Icon */
+.tier-icon-wrap {
+    color: var(--accent);
+    margin-bottom: var(--space-16);
+}
+
+.tier-icon {
+    animation: subtleBounce 3s infinite ease-in-out;
+}
+
+@keyframes subtleBounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+/* Level & Desc */
+.tier-level {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--text-primary);
+    margin-bottom: var(--space-8);
+}
+
+.tier-desc {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+}
+
+/* CTA */
+.roadmap-cta {
+    text-align: center;
+    margin-top: var(--space-48);
+}
+
+.roadmap-btn {
+    background: var(--accent);
+    color: #fff;
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 16px 40px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 20px var(--accent-glow);
+}
+
+.roadmap-btn:hover {
+    background: var(--accent-light);
+    transform: scale(1.05);
+    box-shadow: 0 8px 32px var(--accent-glow);
+}
+
+.roadmap-btn:active {
+    transform: scale(0.95);
+}

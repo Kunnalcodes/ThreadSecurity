@@ -1,0 +1,302 @@
+/* ─── Course Lineup Slider Section ─── */
+.slider-section {
+    padding: var(--space-96) 0 calc(var(--space-96) + 16px);
+    display: flex;
+    justify-content: center;
+    background: var(--bg-primary);
+    overflow: hidden;
+    transition: background 0.4s ease;
+}
+
+.slider-wrapper {
+    width: 1300px;
+    max-width: calc(100% - var(--space-48));
+}
+
+/* ─── Header ─── */
+.slider-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: var(--space-40);
+}
+
+.slider-title {
+    margin-bottom: 0 !important;
+    font-size: 59px !important;
+    font-family: var(--font-display);
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    color: var(--text-primary);
+}
+
+/* ─── Arrow Buttons ─── */
+.slider-controls {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    padding-bottom: 6px;
+}
+
+.slider-btn {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1.5px solid var(--border-strong);
+    background: var(--bg-card);
+    color: var(--text-primary);
+    font-size: 24px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s, box-shadow 0.2s;
+    box-shadow: var(--shadow-sm);
+    user-select: none;
+}
+
+.slider-btn:hover:not(.disabled) {
+    background: var(--accent);
+    color: #fff;
+    border-color: var(--accent);
+    box-shadow: 0 6px 20px var(--accent-glow);
+    transform: scale(1.08);
+}
+
+.slider-btn.disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+/* ─── Viewport / Track ─── */
+.slider-viewport {
+    overflow: hidden;
+    border-radius: 4px;
+    /* fade out the right edge for partial card peek */
+    -webkit-mask-image: linear-gradient(to right, black 0%, black 85%, transparent 100%);
+    mask-image: linear-gradient(to right, black 0%, black 85%, transparent 100%);
+}
+
+.slider-track {
+    display: flex;
+    gap: 24px;
+    transition: transform 0.42s cubic-bezier(0.4, 0, 0.15, 1);
+    will-change: transform;
+}
+
+/* Transition-only sliding — no competing keyframes */
+
+/* ─── Course Card ─── */
+.course-card {
+    width: 360px;
+    height: 460px;
+    min-width: 360px;
+    border-radius: 24px;
+    padding: 28px 26px 26px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    border: 1px solid var(--border);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: default;
+}
+
+.course-card:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-lg);
+}
+
+/* Tag pill */
+.course-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1.5px solid;
+    background: var(--bg-card);
+    width: fit-content;
+}
+
+/* Icon */
+.course-icon-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 72px;
+    height: 72px;
+    border-radius: 20px;
+    background: var(--bg-elevated);
+    backdrop-filter: blur(6px);
+    box-shadow: var(--shadow-sm);
+}
+
+.course-icon {
+    font-size: 38px;
+    line-height: 1;
+    filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
+}
+
+/* Text */
+.course-subtitle {
+    margin-bottom: 0 !important;
+    font-size: 12px !important;
+    font-family: "Unbounded", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+}
+
+.course-name {
+    margin-top: 15px;
+    margin-bottom: 10px !important;
+    font-size: 22px !important;
+    font-family: "Unbounded", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 600;
+    font-style: normal;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+}
+
+.course-desc {
+    margin-bottom: 0 !important;
+    font-size: 14.5px !important;
+    font-family: "Unbounded", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 350;
+    font-style: normal;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+}
+
+/* Meta pills */
+.course-meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.meta-pill {
+    font-size: 11.5px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 4px 12px;
+}
+
+/* CTA — fill-from-left on hover */
+.course-cta {
+    margin-top: auto;
+    display: inline-block;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 600;
+    padding: 11px 0;
+    border-radius: 14px;
+    text-decoration: none;
+    width: 100%;
+    position: relative;
+    overflow: hidden;
+    /* Light ghost state */
+    background: var(--bg-card);
+    border: 1.5px solid var(--cta-color);
+    color: var(--cta-color);
+    transition: color 0.4s ease;
+}
+
+/* The fill layer — slides in from the left */
+.course-cta::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: var(--cta-color);
+    transform: translateX(-100%);
+    transition: transform 0.42s cubic-bezier(0.4, 0, 0.2, 1);
+    border-radius: inherit;
+    z-index: 0;
+}
+
+/* Text sits above the fill */
+.cta-text {
+    position: relative;
+    z-index: 1;
+}
+
+.course-cta:hover {
+    color: #ffffff;
+}
+
+.course-cta:hover::before {
+    transform: translateX(0);
+}
+
+/* ─── Dot Indicators ─── */
+.slider-dots {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 32px;
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    border: none;
+    background: var(--border-strong);
+    cursor: pointer;
+    padding: 0;
+    transition: background 0.25s, width 0.25s, border-radius 0.25s;
+}
+
+.dot.active {
+    background: var(--accent);
+    width: 24px;
+    border-radius: 4px;
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 1060px) {
+
+    /* Show 2 cards */
+    .slider-viewport {
+        -webkit-mask-image: linear-gradient(to right, black 0%, black 78%, transparent 100%);
+        mask-image: linear-gradient(to right, black 0%, black 78%, transparent 100%);
+    }
+}
+
+@media (max-width: 900px) {
+    .slider-title {
+        font-size: 32px !important;
+    }
+
+    .slider-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 600px) {
+    .course-card {
+        width: 280px;
+        min-width: 280px;
+    }
+
+    .slider-title {
+        font-size: 26px !important;
+    }
+}

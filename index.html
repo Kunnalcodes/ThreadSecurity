@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- Favicon — animated via JS, cache-busted with timestamp -->
+  <link id="favicon" rel="icon" type="image/png" href="/Favicon1.png?v=2" />
+
+  <!-- SEO -->
+  <meta name="description"
+    content="Thread Security Academy — Career-focused cybersecurity tracks in Cyber AI, Web Development, and CEH. Hands-on labs, expert mentors, industry certifications." />
+  <meta name="theme-color" content="#0066cc" />
+
+  <title>Thread Security Academy — Learn Cybersecurity. Build Real Skills.</title>
+</head>
+
+<body>
+  <div id="root"></div>
+  <script type="module" src="/src/main.jsx"></script>
+
+  <!-- Animated favicon: alternates every 3s -->
+  <script>
+    (function () {
+      var ts = Date.now();
+      var favicons = [
+        '/Favicon1.png?v=' + ts,
+        '/Favicon2.png?v=' + ts
+      ];
+      var current = 0;
+      var link = document.getElementById('favicon');
+
+      // Preload both so swap is instant
+      favicons.forEach(function (src) {
+        var img = new Image();
+        img.src = src;
+      });
+
+      setInterval(function () {
+        current = (current + 1) % favicons.length;
+        link.href = favicons[current];
+      }, 5000);
+    })();
+  </script>
+</body>
+
+</html>

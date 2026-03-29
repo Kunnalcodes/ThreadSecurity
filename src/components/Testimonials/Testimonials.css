@@ -1,0 +1,305 @@
+/* ═══════════════════════════════════════════════
+   Testimonials.css — Clean Monochrome Theme
+   Primary: White · Accent: #0066cc
+   ═══════════════════════════════════════════════ */
+
+.testimonial-section-bg {
+    background: var(--bg-surface);
+    transition: background 0.4s ease;
+    overflow: hidden;
+    position: relative;
+    padding: 7rem 1.5rem;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+@media (min-width: 768px) {
+    .testimonial-section-bg {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+}
+
+/* ── Subtle Background Orbs ── */
+.orb {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(120px);
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 1;
+}
+.orb-1 {
+    width: 500px;
+    height: 500px;
+    background: var(--accent);
+    top: 5%;
+    left: 0%;
+}
+.orb-2 {
+    width: 400px;
+    height: 400px;
+    background: var(--accent);
+    bottom: 10%;
+    right: 0%;
+}
+
+/* ── Dot Grid ── */
+.testimonial-section-bg::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, var(--accent-subtle) 1px, transparent 1px);
+    background-size: 30px 30px;
+}
+
+/* ── Container ── */
+.testimonials-container {
+    max-width: 1280px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+    width: 100%;
+}
+
+/* ── Header ── */
+.testimonials-header {
+    text-align: center;
+    margin-bottom: 4.5rem;
+}
+
+.testimonials-header .title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: 2.25rem;
+    line-height: 1.15;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+    letter-spacing: -0.03em;
+}
+
+@media (min-width: 768px) {
+    .testimonials-header .title {
+        font-size: 3rem;
+        line-height: 1.1;
+    }
+}
+
+.testimonials-header .subtitle {
+    color: var(--text-secondary);
+    font-family: 'Inter', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 1.6;
+}
+
+/* ── Grid ── */
+.testimonials-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+}
+
+@media (min-width: 768px) {
+    .testimonials-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (min-width: 1024px) {
+    .testimonials-grid {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+/* ── Card ── */
+.testimonial-card {
+    transition: all 0.4s cubic-bezier(0.22, 0.8, 0.36, 1);
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    backdrop-filter: blur(16px) saturate(1.4);
+    padding: 2rem;
+    border-radius: 1.1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: var(--shadow-sm);
+}
+
+.testimonial-card:hover {
+    transform: translateY(-4px);
+    border-color: var(--accent-glow);
+    box-shadow: var(--shadow-accent);
+}
+
+/* ── Card Top ── */
+.card-top {
+    margin-bottom: 1.5rem;
+}
+
+.quote-icon-wrapper {
+    margin-bottom: 1rem;
+    color: var(--accent);
+    opacity: 0.35;
+}
+.quote-icon {
+    width: 1.75rem;
+    height: 1.75rem;
+}
+
+.quote-text {
+    color: var(--text-secondary);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.75;
+    margin-bottom: 1.5rem;
+    font-style: italic;
+    font-size: 0.95rem;
+}
+
+/* ── Badges ── */
+.badges-wrapper {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.25rem;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.3rem 0.8rem;
+    border-radius: 9999px;
+    background: var(--accent-subtle);
+    border: 1px solid var(--border);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.badge-icon {
+    margin-right: 0.3rem;
+    display: flex;
+    align-items: center;
+    color: var(--accent);
+}
+
+/* ── Student Profile ── */
+.student-profile {
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+}
+
+.student-name {
+    color: var(--text-primary);
+    font-family: 'Unbounded', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+}
+
+.student-role {
+    color: var(--accent);
+    font-family: 'Inter', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    margin-top: 0.15rem;
+}
+
+/* ── Footer CTA ── */
+.testimonials-footer {
+    margin-top: 4.5rem;
+    text-align: center;
+}
+
+.btn-glare-container {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    padding: 1.1rem 2.8rem;
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+    color: white;
+    font-family: var(--font-display);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    border-radius: 0.6rem;
+    border: none;
+    transition: all 0.35s cubic-bezier(0.22, 0.8, 0.36, 1);
+    box-shadow: 0 4px 22px var(--accent-glow);
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.btn-glare-container:hover {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 32px var(--accent-glow);
+}
+
+.btn-glare {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.25), transparent);
+    transform: skewX(-25deg);
+    left: -150%;
+    transition: none;
+}
+
+.btn-glare-container:hover .btn-glare {
+    animation: glare 0.7s forwards;
+}
+
+/* ── Animations ── */
+@keyframes float {
+    0%, 100% { transform: translate(0, 0); }
+    33%      { transform: translate(20px, -30px); }
+    66%      { transform: translate(-15px, 15px); }
+}
+
+.animate-float {
+    animation: float 25s infinite ease-in-out;
+}
+.animate-float-delayed {
+    animation: float 30s infinite ease-in-out 3s;
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes glare {
+    from { left: -150%; }
+    to   { left: 150%; }
+}
+
+.animate-on-scroll {
+    opacity: 0;
+}
+.animate-on-scroll.is-visible {
+    animation: fadeUp 0.8s ease-out forwards;
+}
+
+/* ── Responsive ── */
+@media (max-width: 640px) {
+    .testimonial-section-bg {
+        padding: 4rem 1rem;
+    }
+    .testimonials-header .title {
+        font-size: 1.6rem;
+    }
+    .testimonial-card {
+        padding: 1.5rem;
+    }
+}

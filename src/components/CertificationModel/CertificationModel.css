@@ -1,0 +1,214 @@
+/* ── Certification Model Section ── */
+.cert-section {
+    background: var(--bg-primary);
+    padding: var(--space-96) 0;
+}
+
+.cert-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 var(--space-24);
+}
+
+/* Header */
+.cert-header {
+    margin-bottom: var(--space-64);
+}
+
+.cert-title {
+    font-family: 'Unbounded', sans-serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-16);
+}
+
+.cert-subtitle {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+    max-width: 600px;
+}
+
+/* Grid Layout */
+.cert-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 3rem;
+    align-items: start;
+}
+
+@media (min-width: 768px) {
+    .cert-grid {
+        grid-template-columns: 9fr 1fr;
+    }
+}
+
+/* Left: Requirements */
+.cert-left {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-16);
+}
+
+.cert-req {
+    display: flex;
+    align-items: flex-start;
+    gap: 1.5rem;
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+}
+
+.cert-req:hover {
+    border-color: var(--border-strong);
+    background: var(--bg-surface);
+}
+
+.cert-req-icon {
+    background: var(--accent-subtle);
+    color: var(--accent);
+    padding: 12px;
+    border-radius: 12px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cert-req-title {
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+
+.cert-req-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+}
+
+/* Reveal */
+.cert-section .reveal-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease-out;
+}
+
+.cert-section .reveal-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* CTA Button */
+.cert-cta-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: var(--space-24);
+    padding: 16px 32px;
+    background: var(--accent);
+    color: #fff;
+    border: none;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 24px var(--accent-glow);
+    animation: certPulse 3s ease-in-out infinite;
+}
+
+@keyframes certPulse {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 var(--accent-glow);
+    }
+    50% {
+        transform: scale(1.03);
+        box-shadow: 0 0 15px 5px var(--accent-glow);
+    }
+}
+
+.cert-cta-btn:hover {
+    background: var(--accent-light);
+    transform: translateY(-2px);
+}
+
+/* Right: Ribbon Marquee */
+.cert-ribbon {
+    display: none;
+    height: 700px;
+    position: relative;
+    overflow: hidden;
+    mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+    -webkit-mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
+}
+
+@media (min-width: 768px) {
+    .cert-ribbon {
+        display: block;
+    }
+}
+
+.cert-ribbon-inner {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    padding: 1rem 0;
+    animation: verticalMarquee 20s linear infinite;
+}
+
+@keyframes verticalMarquee {
+    0% {
+        transform: translateY(0%);
+    }
+
+    100% {
+        transform: translateY(-50%);
+    }
+}
+
+.ribbon-card {
+    position: relative;
+    background: linear-gradient(135deg, var(--accent), var(--accent-light));
+    height: 160px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    overflow: hidden;
+}
+
+.ribbon-card span {
+    color: #fff;
+    font-family: 'Unbounded', sans-serif;
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    text-align: center;
+    padding: 0 0.5rem;
+}
+
+.ribbon-glow {
+    pointer-events: none;
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0.5);
+    opacity: 0;
+    z-index: -1;
+}
+
+.ribbon-card:hover .ribbon-glow {
+    opacity: 0.6;
+    transform: translate(-50%, -50%) scale(1.5);
+}

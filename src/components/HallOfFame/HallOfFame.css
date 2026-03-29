@@ -1,0 +1,160 @@
+.hof-section {
+    padding: 6rem 0;
+    background: #000; /* Force black background behind video */
+    overflow: hidden;
+    transition: background 0.4s ease;
+}
+
+.hof-video-bg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
+    opacity: 0.85; /* Blend with black if needed */
+}
+
+.hof-container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    position: relative;
+}
+
+.hof-header {
+    text-align: center;
+    margin-bottom: 4rem;
+}
+
+.hof-header h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4vw, 2.5rem);
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 1rem;
+}
+
+.hof-header p {
+    color: var(--text-secondary);
+    font-size: 1.1rem;
+}
+
+.hof-stack-area {
+    position: relative;
+    height: 400px;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.hof-stack {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.hof-card {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--bg-card);
+    border-radius: 2rem;
+    padding: 3rem;
+    box-shadow: var(--shadow-lg);
+    border: 1px solid var(--border);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform-origin: top left;
+}
+
+.hof-card:hover { cursor: pointer; }
+
+.hof-icon {
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: var(--bg-surface);
+    color: var(--text-primary);
+    margin-bottom: 2rem;
+}
+
+.hof-quote {
+    font-size: clamp(1.1rem, 2vw, 1.5rem);
+    font-weight: 500;
+    color: var(--text-primary);
+    font-style: italic;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
+}
+
+.hof-author {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.hof-avatar {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    background: var(--bg-elevated);
+}
+
+.hof-author-details h4 {
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-primary);
+}
+
+.hof-author-details span {
+    font-size: 0.65rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--text-muted);
+}
+
+.hof-nav {
+    position: absolute;
+    bottom: -4rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 1rem;
+    z-index: 10;
+}
+
+.hof-nav button {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--bg-card);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.hof-nav button:hover {
+    background: var(--accent);
+    color: #ffffff;
+    border-color: var(--accent);
+    box-shadow: var(--shadow-md);
+}
+
+@media (max-width: 768px) {
+    .hof-card { padding: 2rem; }
+    .hof-quote { margin-bottom: 2rem; }
+    .hof-icon { margin-bottom: 1.5rem; }
+}

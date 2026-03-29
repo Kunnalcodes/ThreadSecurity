@@ -1,0 +1,76 @@
+/* Hero Visual — Holographic Cyber Scene */
+.hero-visual {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeIn 1s ease-out 0.2s forwards;
+    opacity: 0;
+    transform: translateY(20px);
+    min-height: 520px;
+    border-radius: 28px;
+    overflow: hidden;
+    background: radial-gradient(ellipse at 50% 50%, #001a2e 0%, #000d1a 70%, #000508 100%);
+    box-shadow:
+        0 0 0 1px rgba(44, 105, 203, 0.18),
+        0 0 40px rgba(40, 96, 186, 0.1),
+        0 0 80px rgba(0, 180, 220, 0.06),
+        inset 0 0 60px rgba(0, 245, 255, 0.04);
+}
+
+.hero-visual::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 28px;
+    padding: 1.5px;
+    background: linear-gradient(135deg, rgba(0, 245, 255, 0.6) 0%, rgba(0, 200, 184, 0.3) 40%, rgba(0, 128, 255, 0.4) 100%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    animation: borderPulse 3s ease-in-out infinite;
+}
+
+#holo-canvas {
+    width: 100% !important;
+    height: 520px !important;
+    cursor: grab;
+    display: block;
+    background: transparent;
+}
+
+#holo-canvas:active {
+    cursor: grabbing;
+}
+
+.earth-hint {
+    position: absolute;
+    bottom: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 11px;
+    color: rgba(41, 149, 149, 0.7);
+    background: rgba(0, 20, 40, 0.8);
+    backdrop-filter: blur(8px);
+    padding: 4px 14px;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 245, 255, 0.3);
+    pointer-events: none;
+    white-space: nowrap;
+    letter-spacing: 0.06em;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+@media (max-width: 900px) {
+    .hero-visual {
+        width: 100%;
+        min-height: 320px;
+    }
+
+    #holo-canvas {
+        height: 320px !important;
+    }
+}

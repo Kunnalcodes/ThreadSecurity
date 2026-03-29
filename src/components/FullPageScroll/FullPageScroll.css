@@ -1,0 +1,386 @@
+/* ============================================
+   Full-Page Scroll Snap Container (Rascal Mode)
+   ============================================ */
+
+.fps-container {
+    height: 100vh;
+    overflow-y: auto;
+    scroll-snap-type: y proximity; /* Changed to 'proximity' for more natural feel */
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--accent-subtle) transparent;
+}
+
+/* Custom scrollbar for better visibility */
+.fps-container::-webkit-scrollbar {
+    width: 6px;
+}
+
+.fps-container::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.fps-container::-webkit-scrollbar-thumb {
+    background: var(--accent-subtle);
+    border-radius: 10px;
+    transition: background 0.3s;
+}
+
+.fps-container::-webkit-scrollbar-thumb:hover {
+    background: var(--accent);
+}
+
+.fps-section {
+    scroll-snap-align: start;
+    scroll-snap-stop: normal; /* Allows skipping sections */
+    min-height: 100vh;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.fps-section > section,
+.fps-section > div {
+    flex: 1;
+    min-height: 0;
+}
+
+/* Sections always fully visible */
+.fps-section {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.fps-section--active {
+    opacity: 1;
+}
+
+/* ============================================
+   Navigation Dots (Enhanced)
+   ============================================ */
+
+.fps-dots {
+    position: fixed;
+    right: 1.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    z-index: 999;
+    padding: 14px 8px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(16px) saturate(1.5);
+    -webkit-backdrop-filter: blur(16px) saturate(1.5);
+    border-radius: 40px;
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.fps-dots:hover {
+    padding: 14px 10px;
+    box-shadow: var(--shadow-lg);
+}
+
+.fps-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: 2px solid var(--border-strong);
+    background: transparent;
+    cursor: pointer;
+    padding: 0;
+    transition: all 0.4s cubic-bezier(0.22, 0.8, 0.36, 1);
+    position: relative;
+}
+
+/* Inner dot */
+.fps-dot::after {
+    content: '';
+    position: absolute;
+    inset: 2px;
+    border-radius: 50%;
+    background: transparent;
+    transition: all 0.4s cubic-bezier(0.22, 0.8, 0.36, 1);
+}
+
+/* Active dot */
+.fps-dot.active {
+    border-color: var(--accent);
+    transform: scale(1.5);
+    box-shadow: 0 0 16px var(--accent-glow);
+}
+
+.fps-dot.active::after {
+    background: var(--accent);
+    inset: 1px;
+    box-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* Hover effect */
+.fps-dot:hover:not(.active) {
+    border-color: var(--accent-light);
+    transform: scale(1.2);
+}
+
+.fps-dot:hover:not(.active)::after {
+    background: var(--accent-subtle);
+}
+
+/* Focus visible for accessibility */
+.fps-dot:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 4px;
+}
+
+/* ============================================
+   Scroll Indicator (Mouse Animation)
+   ============================================ */
+
+.fps-scroll-indicator {
+    position: fixed;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    z-index: 100;
+    animation: fadeInUp 1s ease 0.5s both;
+    pointer-events: none;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+}
+
+.scroll-mouse {
+    width: 28px;
+    height: 44px;
+    border: 2px solid var(--accent);
+    border-radius: 20px;
+    position: relative;
+    background: var(--glass-bg);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 0 20px var(--accent-glow);
+}
+
+.scroll-wheel {
+    width: 4px;
+    height: 8px;
+    background: var(--accent);
+    border-radius: 4px;
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation: scrollWheel 2s infinite;
+    box-shadow: 0 0 8px var(--accent-glow);
+}
+
+@keyframes scrollWheel {
+    0% {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0);
+    }
+    50% {
+        opacity: 0.5;
+        transform: translateX(-50%) translateY(12px);
+    }
+    100% {
+        opacity: 0;
+        transform: translateX(-50%) translateY(16px);
+    }
+}
+
+.scroll-text {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--accent-light);
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.6;
+    }
+}
+
+/* ============================================
+   Section Progress Bar (Optional Enhancement)
+   ============================================ */
+
+.fps-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: var(--bg-surface);
+    z-index: 1000;
+    pointer-events: none;
+}
+
+.fps-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--pal-green-bright) 0%, var(--pal-lime) 100%);
+    transition: width 0.3s ease;
+    box-shadow: 0 0 10px var(--accent-glow);
+}
+
+/* ============================================
+   Smooth Transitions Between Sections
+   ============================================ */
+
+.fps-section {
+    will-change: transform, opacity;
+}
+
+/* Subtle scale effect for smoother transitions */
+.fps-section:not(.fps-section--active) {
+    transform: scale(0.98);
+    pointer-events: auto; /* Keep sections interactive */
+}
+
+.fps-section--active {
+    transform: scale(1);
+}
+
+/* ============================================
+   Keyboard Navigation Hint
+   ============================================ */
+
+.fps-keyboard-hint {
+    position: fixed;
+    bottom: 1rem;
+    right: 1.5rem;
+    padding: 8px 16px;
+    background: var(--glass-bg);
+    backdrop-filter: blur(12px);
+    border: 1px solid var(--glass-border);
+    border-radius: 12px;
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    opacity: 0;
+    animation: fadeIn 0.5s ease 2s forwards;
+    z-index: 99;
+    pointer-events: none;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* ============================================
+   Responsive
+   ============================================ */
+
+@media (max-width: 768px) {
+    .fps-dots {
+        right: 1rem;
+        padding: 10px 6px;
+        gap: 10px;
+    }
+
+    .fps-dot {
+        width: 8px;
+        height: 8px;
+    }
+
+    .fps-scroll-indicator {
+        bottom: 2rem;
+        transform: translateX(-50%) scale(0.9);
+    }
+
+    .scroll-mouse {
+        width: 24px;
+        height: 38px;
+    }
+
+    .scroll-text {
+        font-size: 0.7rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .fps-dots {
+        right: 0.5rem;
+        padding: 8px 4px;
+        gap: 8px;
+    }
+
+    .fps-dot {
+        width: 6px;
+        height: 6px;
+    }
+
+    .fps-scroll-indicator {
+        bottom: 1.5rem;
+    }
+
+    .fps-keyboard-hint {
+        display: none;
+    }
+}
+
+/* Hide scroll indicator on very small screens */
+@media (max-width: 360px) {
+    .fps-scroll-indicator {
+        display: none;
+    }
+}
+
+/* ============================================
+   Accessibility & Reduced Motion
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+    .fps-container {
+        scroll-behavior: auto;
+    }
+
+    .fps-dot,
+    .scroll-wheel,
+    .scroll-text,
+    .fps-section {
+        animation: none !important;
+        transition: none !important;
+    }
+
+    .fps-scroll-indicator {
+        animation: none;
+        opacity: 1;
+    }
+
+    .fps-section:not(.fps-section--active) {
+        transform: none;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .fps-dot {
+        border-width: 3px;
+    }
+
+    .fps-dots {
+        border-width: 2px;
+    }
+}

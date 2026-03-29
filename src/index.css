@@ -1,0 +1,153 @@
+
+
+@import url('https://fonts.googleapis.com/css2?family=Unbounded:wght@200..900&family=Inter:wght@400;500;600;700&display=swap');
+
+/* ════════════════════════════════════════════
+   DARK THEME (Default)
+   ════════════════════════════════════════════ */
+:root {
+  /* Brand palette (no default blue) */
+  --pal-black: #000000;
+  --pal-pink: #f4bbff;
+  --pal-olive: #808000;
+  --pal-lime: #afff00;
+  --pal-forest: #353935;
+  --pal-charcoal: #202020;
+  --pal-green-bright: #5dd62c;
+  --pal-green-dark: #337413;
+  --pal-off-white: #f8f8f8;
+
+  /* Backgrounds */
+  --bg-primary: var(--pal-black);
+  --bg-surface: var(--pal-charcoal);
+  --bg-card: #2a2a2a;
+  --bg-elevated: var(--pal-forest);
+
+  /* Global UI accent — lime / green (not blue) */
+  --accent: var(--pal-green-bright);
+  --accent-light: var(--pal-lime);
+  --accent-glow: rgba(93, 214, 44, 0.38);
+  --accent-subtle: rgba(93, 214, 44, 0.14);
+
+  /* Fallback card tokens (Career / CourseLineup override per card) */
+  --card-accent-light: linear-gradient(
+    156deg,
+    var(--pal-off-white) 0%,
+    rgba(244, 187, 255, 0.35) 50%,
+    var(--pal-off-white) 100%
+  );
+  --card-accent-border: rgba(128, 128, 0, 0.28);
+  --card-accent-text: var(--pal-charcoal);
+  --card-accent-muted: var(--pal-forest);
+
+  /* Section shells — black / charcoal / forest (no blue) */
+  --section-gradient-dark: linear-gradient(
+    165deg,
+    var(--pal-black) 0%,
+    var(--pal-charcoal) 38%,
+    var(--pal-forest) 65%,
+    var(--pal-black) 100%
+  );
+  --section-gradient-mesh: radial-gradient(
+    ellipse 120% 85% at 50% -18%,
+    rgba(244, 187, 255, 0.09) 0%,
+    rgba(175, 255, 0, 0.05) 40%,
+    transparent 58%
+  );
+
+  --text-primary: var(--pal-off-white);
+  --text-secondary: rgba(248, 248, 248, 0.78);
+  --text-muted: rgba(248, 248, 248, 0.52);
+
+  --border: rgba(248, 248, 248, 0.09);
+  --border-strong: rgba(128, 128, 0, 0.38);
+  --glass-bg: rgba(32, 32, 32, 0.92);
+  --glass-border: rgba(248, 248, 248, 0.08);
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.45);
+  --shadow-md: 0 4px 24px rgba(0, 0, 0, 0.55);
+  --shadow-lg: 0 24px 48px rgba(0, 0, 0, 0.65);
+  --shadow-accent: 0 4px 32px rgba(93, 214, 44, 0.22);
+
+  /* Spacing Scale */
+  --space-8: 8px;
+  --space-16: 16px;
+  --space-20: 20px;
+  --space-24: 24px;
+  --space-32: 32px;
+  --space-40: 40px;
+  --space-48: 48px;
+  --space-64: 64px;
+  --space-72: 72px;
+  --space-96: 96px;
+
+  /* Typography */
+  --font-display: 'Unbounded', sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* ════════════════════════════════════════════
+   LIGHT THEME (Toggle)
+   ════════════════════════════════════════════ */
+[data-theme="light"] {
+  --bg-primary: var(--pal-off-white);
+  --bg-surface: #eeeeee;
+  --bg-card: #ffffff;
+  --bg-elevated: #e8e8e8;
+
+  --accent: var(--pal-green-dark);
+  --accent-light: var(--pal-green-bright);
+  --accent-glow: rgba(51, 116, 19, 0.2);
+  --accent-subtle: rgba(93, 214, 44, 0.12);
+
+  --text-primary: var(--pal-charcoal);
+  --text-secondary: var(--pal-forest);
+  --text-muted: rgba(53, 57, 53, 0.65);
+
+  --border: rgba(53, 57, 53, 0.12);
+  --border-strong: rgba(128, 128, 0, 0.35);
+  --glass-bg: rgba(255, 255, 255, 0.82);
+  --glass-border: rgba(53, 57, 53, 0.08);
+
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.08);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 20px 40px rgba(0, 0, 0, 0.12);
+  --shadow-accent: 0 4px 30px rgba(93, 214, 44, 0.18);
+}
+
+/* ════════════════════════════════════════════
+   RESET & GLOBALS
+   ════════════════════════════════════════════ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  line-height: 1.5;
+  overflow-x: hidden;
+  transition: background-color 0.4s ease, color 0.4s ease;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes borderPulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 1.0; }
+}
+
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+.lenis.lenis-smooth iframe { pointer-events: none; }

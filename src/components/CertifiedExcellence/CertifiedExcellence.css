@@ -1,0 +1,101 @@
+.certified-excellence-section {
+    padding-top: 3.5rem;
+    padding-bottom: 0rem;
+    background: var(--bg-primary);
+    border-top: 1px solid var(--border);
+    overflow: hidden;
+    transition: background 0.4s ease;
+}
+
+.ce-header {
+    text-align: center;
+    margin-bottom: 2.5rem;
+}
+
+.ce-header h2 {
+    font-family: var(--font-display);
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--text-primary);
+}
+
+.ce-header p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.ce-marquee-container {
+    display: flex;
+    white-space: nowrap;
+    overflow: hidden;
+    position: relative;
+    width: 100%;
+}
+
+/* Gradient fade at edges — uses bg-primary for seamless blend */
+.ce-marquee-container::before,
+.ce-marquee-container::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 15%;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.ce-marquee-container::before {
+    left: 0;
+    background: linear-gradient(to right, var(--bg-primary), transparent);
+}
+
+.ce-marquee-container::after {
+    right: 0;
+    background: linear-gradient(to left, var(--bg-primary), transparent);
+}
+
+.ce-marquee-track {
+    display: flex;
+    align-items: center;
+    gap: 4rem;
+    min-width: 200%;
+    animation: ce-scroll 35s linear infinite;
+    padding: 0 2rem;
+}
+
+.ce-marquee-container:hover .ce-marquee-track {
+    animation-play-state: paused;
+}
+
+@keyframes ce-scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+}
+
+.ce-badge {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    filter: grayscale(100%);
+    color: var(--text-secondary);
+    transition: all 0.3s ease;
+    cursor: default;
+}
+
+.ce-badge:hover {
+    filter: grayscale(0%);
+    color: var(--accent);
+}
+
+.ce-badge svg {
+    width: 48px;
+    height: 48px;
+}
+
+.ce-badge span {
+    font-family: var(--font-display);
+    font-size: 1.125rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+}
