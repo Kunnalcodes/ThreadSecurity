@@ -7,9 +7,9 @@ import './MeetTheExperts.css';
 
 const experts = [
     {
-        name: "Alex Volkov",
+        name: "Vishal Kumar",
         role: "Founder & CEO",
-        avatar: "/assets/avatars/alex.png",
+        avatar: "/assets/avatars/CEO.jpeg",
         vision: "Security education must be forged in the heat of real attacks, not built on slides. I founded Thread Security to close the gap between classroom theory and the front lines of modern cyber warfare.",
         trajectory: "Started as a red-team operator at Fortune 500 banks • Led breach-response engagements across 3 continents • Now building the academy he never had.",
         accent: "#4ade80",
@@ -18,9 +18,9 @@ const experts = [
         shadow: "rgba(74, 222, 128, 0.07)"
     },
     {
-        name: "Elena Vance",
-        role: "Lead Security Engineer",
-        avatar: "/assets/avatars/elena.png",
+        name: "Sujal Tiwari",
+        role: "Chief Technology Officer",
+        avatar: "/assets/avatars/CTO.jpeg",
         vision: "Exploit research is an art form. My goal at Thread Security is to teach students to see systems the way attackers do — so defenders can always be one step ahead.",
         trajectory: "Published CVE researcher • 10+ yrs in zero-day discovery & exploit automation • Designed offensive CTF infra used by global security conferences.",
         accent: "#22c55e",
@@ -41,7 +41,7 @@ const experts = [
     },
     {
         name: "Sarah Chen",
-        role: "Security Architect",
+        role: "Principal Software Developer",
         avatar: "/assets/avatars/sarah.png",
         vision: "Zero-trust isn't a product — it's a philosophy. I teach engineers to design systems where breaches are assumed and every layer is hardened before the attacker arrives.",
         trajectory: "CISSP certified • 12 yrs across cloud infra, SIEM integration & DevSecOps • Pioneered zero-trust rollouts at two global financial institutions.",

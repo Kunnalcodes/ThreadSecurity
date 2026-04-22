@@ -90,10 +90,12 @@ export default function CourseRoadmap() {
                     Every sprint is designed to compound your skills.
                 </p>
 
-                <div className="cr-timeline">
-                    {TIMELINE.map((item, i) => (
-                        <TLItem key={i} item={item} index={i} total={TIMELINE.length} />
-                    ))}
+                <div className="cr-scroll-card">
+                    <div className="cr-timeline">
+                        {TIMELINE.map((item, i) => (
+                            <TLItem key={i} item={item} index={i} total={TIMELINE.length} />
+                        ))}
+                    </div>
                 </div>
             </div>
         </section>

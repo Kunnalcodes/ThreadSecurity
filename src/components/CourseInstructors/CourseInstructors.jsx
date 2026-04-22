@@ -3,8 +3,8 @@ import { Users } from 'lucide-react';
 import './CourseInstructors.css';
 
 // Import Images
-import sujalImg from '../../assets/IMG_20260419_143752.jpg.jpeg';
-import vishalImg from '../../assets/IMG_20260419_143254.jpg.jpeg';
+import CTOimg from '../../assets/CTO.jpeg';
+import CEOimg from '../../assets/CEO.jpeg';
 
 
 const INSTRUCTORS = [
@@ -16,7 +16,7 @@ const INSTRUCTORS = [
         skills: ['Ethical Hacking', 'Offensive Security', 'Vulnerability Assessment', 'Cyber Defense'],
         color: '#5dd62c',
         initials: 'VK',
-        image: vishalImg,
+        image: CEOimg,
     },
     {
         name: 'Sujal Tiwari',
@@ -26,7 +26,7 @@ const INSTRUCTORS = [
         skills: ['System Architecture', 'Product Development', 'Cybersecurity Research', 'Scalable Systems'],
         color: '#f4bbff',
         initials: 'ST',
-        image: sujalImg,
+        image: CTOimg,
     },
 ];
 

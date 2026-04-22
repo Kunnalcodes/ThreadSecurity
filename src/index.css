@@ -15,7 +15,7 @@
   --pal-charcoal: #202020;
   --pal-green-bright: #5dd62c;
   --pal-green-dark: #337413;
-  --pal-off-white: #f8f8f8;
+  --pal-off-white: #ffffff;
 
   /* Backgrounds */
   --bg-primary: var(--pal-black);
@@ -92,7 +92,7 @@
 [data-theme="light"] {
   --bg-primary: var(--pal-off-white);
   --bg-surface: #eeeeee;
-  --bg-card: #ffffff;
+  --bg-card: #161515;
   --bg-elevated: #e8e8e8;
 
   --accent: var(--pal-green-dark);
