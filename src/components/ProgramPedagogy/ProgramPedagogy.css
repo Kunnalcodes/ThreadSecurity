@@ -1,0 +1,349 @@
+/* ═══════════════════════════════════════════
+   ProgramPedagogy — How We Teach Section
+   ═══════════════════════════════════════════ */
+
+.pp-section {
+    position: relative;
+    padding: 100px 0;
+    background: var(--bg-primary);
+    overflow: hidden;
+}
+
+/* Ambient orbs */
+.pp-orb {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(120px);
+    opacity: 0.18;
+}
+.pp-orb-1 {
+    width: 600px; height: 600px;
+    background: rgba(93, 214, 44, 0.22);
+    top: -180px; left: -200px;
+}
+.pp-orb-2 {
+    width: 500px; height: 500px;
+    background: rgba(244, 187, 255, 0.15);
+    bottom: -150px; right: -150px;
+}
+
+.pp-inner {
+    position: relative;
+    z-index: 1;
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 32px;
+}
+
+/* ── Header ── */
+.pp-header {
+    margin-bottom: 60px;
+}
+
+.pp-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.13em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-subtle);
+    border: 1px solid rgba(93, 214, 44, 0.22);
+    padding: 5px 14px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+}
+
+.pp-title {
+    font-family: var(--font-display);
+    font-size: clamp(30px, 4vw, 50px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.08;
+    margin-bottom: 14px;
+    color: var(--text-primary);
+}
+
+.pp-grad {
+    background: linear-gradient(130deg, var(--accent) 0%, var(--accent-light) 60%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.pp-sub {
+    font-size: 15.5px;
+    color: var(--text-muted);
+    max-width: 700px;
+    line-height: 1.75;
+    margin-bottom: 26px;
+}
+
+/* Description quote card */
+.pp-description-card {
+    position: relative;
+    padding: 22px 24px 22px 28px;
+    border-radius: 14px;
+    background: rgba(93, 214, 44, 0.04);
+    border: 1px solid rgba(93, 214, 44, 0.14);
+    max-width: 780px;
+    font-size: 15px;
+    color: var(--text-secondary);
+    line-height: 1.75;
+    overflow: hidden;
+}
+
+.pp-desc-accent {
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: linear-gradient(180deg, var(--accent), var(--accent-light));
+    border-radius: 3px 0 0 3px;
+}
+
+.pp-description-card strong {
+    color: var(--accent-light);
+    font-weight: 700;
+}
+
+/* ── 6-Pillar Grid ── */
+.pp-pillars-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    margin-bottom: 64px;
+}
+
+/* Pillar card */
+.pp-pillar {
+    position: relative;
+    padding: 28px 24px;
+    border-radius: 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    overflow: hidden;
+    /* Entry animation */
+    opacity: 0;
+    transform: translateY(30px);
+    transition:
+        opacity 0.5s ease var(--delay, 0s),
+        transform 0.5s ease var(--delay, 0s),
+        border-color 0.25s ease;
+}
+.pp-pillar--in {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+.pp-pillar:hover {
+    border-color: var(--border-strong);
+    background: var(--bg-elevated);
+}
+
+/* Colored top line on hover */
+.pp-pillar-top {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    border-radius: 16px 16px 0 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.pp-pillar:hover .pp-pillar-top { opacity: 1; }
+.pp-pillar--lime .pp-pillar-top    { background: var(--accent); }
+.pp-pillar--green .pp-pillar-top   { background: var(--pal-green-bright); }
+.pp-pillar--teal .pp-pillar-top    { background: #22d3ee; }
+.pp-pillar--yellow .pp-pillar-top  { background: #facc15; }
+.pp-pillar--pink .pp-pillar-top    { background: var(--pal-pink); }
+.pp-pillar--orange .pp-pillar-top  { background: #fb923c; }
+
+/* Icon */
+.pp-pillar-icon {
+    width: 48px; height: 48px;
+    border-radius: 12px;
+    display: flex; align-items: center; justify-content: center;
+    background: rgba(248, 248, 248, 0.04);
+    border: 1px solid var(--border);
+    margin-bottom: 16px;
+    transition: transform 0.25s ease;
+}
+.pp-pillar:hover .pp-pillar-icon { transform: scale(1.08); }
+
+.pp-icon--lime   { color: var(--accent);            border-color: rgba(93,214,44,0.25); }
+.pp-icon--green  { color: var(--pal-green-bright);  border-color: rgba(93,214,44,0.2); }
+.pp-icon--teal   { color: #22d3ee;                  border-color: rgba(34,211,238,0.25); }
+.pp-icon--yellow { color: #facc15;                  border-color: rgba(250,204,21,0.25); }
+.pp-icon--pink   { color: var(--pal-pink);          border-color: rgba(244,187,255,0.25); }
+.pp-icon--orange { color: #fb923c;                  border-color: rgba(251,146,60,0.25); }
+
+.pp-pillar-title {
+    font-family: var(--font-display);
+    font-size: 15.5px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: var(--text-primary);
+    line-height: 1.3;
+}
+
+.pp-pillar-desc {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    line-height: 1.65;
+}
+
+/* ── Learning Flow Steps ── */
+.pp-steps-section {
+    background: rgba(248, 248, 248, 0.025);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    padding: 36px 40px;
+    margin-bottom: 48px;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.55s ease, transform 0.55s ease;
+}
+.pp-steps--in {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+}
+
+.pp-steps-heading {
+    font-family: var(--font-display);
+    font-size: 17px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 30px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.pp-steps-icon {
+    color: var(--accent);
+}
+
+.pp-steps {
+    display: flex;
+    align-items: flex-start;
+    gap: 0;
+    overflow-x: auto;
+    padding-bottom: 4px;
+}
+
+.pp-step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    flex: 1;
+    min-width: 100px;
+
+    /* Staggered fade-in when parent becomes visible */
+    opacity: 0;
+    transform: translateY(14px);
+    transition:
+        opacity 0.4s ease calc(var(--step-delay, 0s) + 0.2s),
+        transform 0.4s ease calc(var(--step-delay, 0s) + 0.2s);
+}
+
+.pp-steps--in .pp-step {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.pp-step-num {
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-light));
+    display: flex; align-items: center; justify-content: center;
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 800;
+    color: var(--bg-primary);
+    box-shadow: 0 0 20px var(--accent-glow);
+    z-index: 1;
+    position: relative;
+    margin-bottom: 10px;
+    transition: transform 0.25s ease;
+}
+.pp-step:hover .pp-step-num { transform: scale(1.1); }
+
+/* Horizontal connector line */
+.pp-step-line {
+    position: absolute;
+    top: 22px;
+    left: calc(50% + 22px);
+    right: calc(-50% + 22px);
+    height: 2px;
+    background: var(--border);
+}
+
+.pp-step-label {
+    font-family: var(--font-display);
+    font-size: 12.5px;
+    font-weight: 700;
+    color: var(--text-primary);
+    text-align: center;
+    margin-bottom: 3px;
+}
+
+.pp-step-sub {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-align: center;
+    font-weight: 500;
+}
+
+/* ── Bottom Stat Chips ── */
+.pp-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    justify-content: center;
+}
+
+.pp-chip {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    padding: 16px 28px;
+    border-radius: 14px;
+    background: rgba(93, 214, 44, 0.05);
+    border: 1px solid rgba(93, 214, 44, 0.16);
+    transition: all 0.25s ease;
+}
+.pp-chip:hover {
+    background: rgba(93, 214, 44, 0.1);
+    border-color: rgba(93, 214, 44, 0.3);
+    transform: translateY(-3px);
+}
+
+.pp-chip-val {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+}
+
+.pp-chip-desc {
+    font-size: 11.5px;
+    color: var(--text-muted);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+}
+
+/* ── Responsive ── */
+@media (max-width: 960px) {
+    .pp-pillars-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+    .pp-pillars-grid { grid-template-columns: 1fr; }
+    .pp-inner { padding: 0 18px; }
+    .pp-steps-section { padding: 24px 18px; }
+    .pp-steps { gap: 6px; }
+    .pp-step { min-width: 80px; }
+}

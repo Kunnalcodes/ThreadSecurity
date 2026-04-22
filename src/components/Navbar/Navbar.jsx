@@ -1,9 +1,11 @@
 import { useState, useEffect, useRef } from 'react';
-import { Menu, X, ChevronDown, Sun, Moon } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Menu, X, ChevronDown, Sun, Moon, User, LogOut, ShieldCheck } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 import { useTheme } from '../../context/ThemeContext';
+import { useAuth } from '../../context/AuthContext';
 import brandLogo from '../../assets/Thread_Security_Logo-1--01 (1).png';
 import './Navbar.css';
+
 
 /* ── Dropdown data ── */
 const coursesDropdown = [
@@ -43,7 +45,7 @@ const programsDropdown = [
     {
         category: 'Internship',
         items: [
-            { label: 'Summer Internship', trending: true },
+            { label: 'Summer Internship (45 Days)', trending: true },
             { label: 'Industry Internship' },
         ],
     },
@@ -55,6 +57,17 @@ const programsDropdown = [
             { label: 'Bootcamp', trending: true },
         ],
     },
+    {
+        category: 'AI & Data Science',
+        items: [
+            { label: 'Machine Learning & Data Science', trending: true },
+            { label: 'Generative AI & Prompt Engineering' },
+            { label: 'NLP & Conversational AI' },
+            { label: 'Computer Vision' },
+            { label: 'MLOps & AI Deployment' },
+            { label: 'AI for Cybersecurity', trending: true },
+        ],
+    },
 ];
 
 function Navbar() {
@@ -64,6 +77,13 @@ function Navbar() {
     const [mobileExpanded, setMobileExpanded] = useState(null);
     const dropdownTimeoutRef = useRef(null);
     const { theme, toggleTheme } = useTheme();
+    const { user, isAuthenticated, logout } = useAuth();
+    const navigate = useNavigate();
+
+    async function handleLogout() {
+        await logout();
+        navigate('/', { replace: true });
+    }
 
     useEffect(() => {
         const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -166,11 +186,32 @@ function Navbar() {
                         </div>
                     </div>
 
-                    <a href="#experts" className="nav-link">Mentorship</a>
+                    <Link to="/mentorship" className="nav-link">Mentorship</Link>
                     <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
                         {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
                     </button>
-                    <a href="#academy" className="nav-btn-primary glare-hover">Get Started</a>
+
+                    {isAuthenticated ? (
+                        <div className="nav-auth-group">
+                            <Link to="/profile" className="nav-auth-avatar" title={user?.full_name}>
+                                <User size={16} />
+                                <span>{user?.first_name}</span>
+                            </Link>
+                            {user?.is_staff && (
+                                <a href="/admin/" target="_blank" rel="noopener noreferrer" className="nav-admin-badge" title="Admin Panel">
+                                    <ShieldCheck size={14} />
+                                </a>
+                            )}
+                            <button className="nav-logout-btn" onClick={handleLogout} title="Sign Out">
+                                <LogOut size={15} />
+                            </button>
+                        </div>
+                    ) : (
+                        <>
+                            <Link to="/login" className="nav-btn-outline glare-hover">Login</Link>
+                            <Link to="/register" className="nav-btn-primary glare-hover">Sign Up</Link>
+                        </>
+                    )}
                 </nav>
 
                 {/* Mobile Hamburger */}
@@ -235,8 +276,26 @@ function Navbar() {
                         </div>
                     </div>
 
-                    <a href="#experts" className="mobile-nav-link" onClick={closeMobile}>Mentorship</a>
-                    <a href="#academy" className="mobile-nav-btn glare-hover" onClick={closeMobile}>Get Started</a>
+                    <Link to="/mentorship" className="mobile-nav-link" onClick={closeMobile}>Mentorship</Link>
+
+                    {isAuthenticated ? (
+                        <>
+                            <Link to="/profile" className="mobile-nav-link" onClick={closeMobile}>
+                                <User size={16} /> My Profile
+                            </Link>
+                            <button
+                                className="mobile-nav-link mobile-nav-link--danger"
+                                onClick={() => { handleLogout(); closeMobile(); }}
+                            >
+                                <LogOut size={15} /> Sign Out
+                            </button>
+                        </>
+                    ) : (
+                        <>
+                            <Link to="/login" className="mobile-nav-link mobile-nav-link--outline" onClick={closeMobile}>Login</Link>
+                            <Link to="/register" className="mobile-nav-btn glare-hover" onClick={closeMobile}>Sign Up</Link>
+                        </>
+                    )}
                 </div>
             </div>
         </header>

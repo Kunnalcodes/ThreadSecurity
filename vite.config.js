@@ -11,5 +11,14 @@ export default defineConfig({
     visualizer({ open: false, filename: 'stats.html' }),
     // Gzip compression for assets
     compress({ algorithm: 'gzip' })
-  ]
+  ],
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://localhost:8000',
+        changeOrigin: true,
+        secure: false,
+      }
+    }
+  }
 });

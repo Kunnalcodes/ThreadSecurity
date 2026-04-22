@@ -1,0 +1,214 @@
+/* ═══════════════════════════════════
+   CourseCurriculum — Scroll-animated
+   Phase Accordion Cards
+   ═══════════════════════════════════ */
+
+.cc-section {
+    padding: 100px 0;
+    background: var(--bg-primary);
+}
+
+.cc-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 32px;
+}
+
+/* Label */
+.cc-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-subtle);
+    border: 1px solid rgba(93, 214, 44, 0.22);
+    padding: 5px 13px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+}
+
+.cc-title {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3.8vw, 46px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 12px;
+    color: var(--text-primary);
+}
+
+.cc-grad {
+    background: linear-gradient(130deg, var(--accent) 0%, var(--accent-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.cc-sub {
+    color: var(--text-muted);
+    font-size: 15.5px;
+    max-width: 560px;
+    margin-bottom: 48px;
+    line-height: 1.7;
+}
+
+/* Phases list */
+.cc-phases {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* Individual phase card */
+.cc-phase {
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: var(--bg-card);
+    overflow: hidden;
+
+    /* Entry animation — slide from left */
+    opacity: 0;
+    transform: translateX(-40px);
+    transition:
+        opacity 0.5s ease var(--delay, 0s),
+        transform 0.5s ease var(--delay, 0s),
+        border-color 0.25s ease;
+}
+
+.cc-phase--right {
+    transform: translateX(40px);
+}
+
+.cc-phase--in {
+    opacity: 1 !important;
+    transform: translateX(0) !important;
+}
+
+.cc-phase:hover {
+    border-color: rgba(93, 214, 44, 0.22);
+}
+
+/* Phase header button */
+.cc-phase-header {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 16px 20px;
+    cursor: pointer;
+    width: 100%;
+    background: none;
+    border: none;
+    text-align: left;
+    color: var(--text-primary);
+    transition: background 0.2s ease;
+}
+
+.cc-phase-header:hover {
+    background: rgba(248, 248, 248, 0.02);
+}
+
+.cc-phase-id {
+    font-family: monospace;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--accent, var(--accent));
+    background: rgba(248, 248, 248, 0.05);
+    border: 1px solid rgba(93, 214, 44, 0.22);
+    padding: 4px 10px;
+    border-radius: 6px;
+    flex-shrink: 0;
+    letter-spacing: 0.05em;
+    /* Color overrides come from --accent set inline */
+    color: var(--accent, #5dd62c);
+    border-color: color-mix(in srgb, var(--accent, #5dd62c) 30%, transparent);
+}
+
+.cc-phase-icon-wrap {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(248, 248, 248, 0.04);
+    border: 1px solid var(--border);
+    flex-shrink: 0;
+}
+
+.cc-phase-meta {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.cc-phase-title {
+    font-family: var(--font-display);
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--text-primary);
+    line-height: 1.3;
+}
+
+.cc-phase-count {
+    font-size: 11px;
+    color: var(--text-muted);
+    font-weight: 500;
+    letter-spacing: 0.04em;
+}
+
+.cc-chevron {
+    transition: transform 0.3s ease;
+    flex-shrink: 0;
+}
+
+.cc-chevron--open {
+    transform: rotate(180deg);
+}
+
+/* Expandable body */
+.cc-phase-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.cc-phase-body--open {
+    max-height: 700px;
+}
+
+/* Topic list */
+.cc-topic-list {
+    list-style: none;
+    padding: 6px 20px 22px 76px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px 28px;
+}
+
+.cc-topic-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 9px;
+    font-size: 13.5px;
+    color: var(--text-muted);
+    line-height: 1.55;
+}
+
+.cc-topic-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 7px;
+}
+
+/* Responsive */
+@media (max-width: 700px) {
+    .cc-topic-list { grid-template-columns: 1fr; }
+    .cc-inner { padding: 0 18px; }
+}

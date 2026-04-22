@@ -1,0 +1,50 @@
+/* ══════════════════════════════════════════════════
+   CoursePage.css — Page-level layout glue
+   All component-level styles are in their own files.
+   This file handles global page shell only.
+   ══════════════════════════════════════════════════ */
+
+.cp-main {
+    /* Prevent Navbar overlap on first section */
+    padding-top: 0;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    overflow-x: hidden;
+}
+
+/* Smooth section transitions */
+.cp-main > * {
+    position: relative;
+}
+
+/* Global section inner max-width helper (optional override) */
+.cp-section-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 32px;
+}
+
+/* Shared gradient text utility */
+.cp-text-lime {
+    background: linear-gradient(130deg, var(--accent) 0%, var(--accent-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Shared section label pill utility */
+.cp-label-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-subtle);
+    border: 1px solid rgba(93, 214, 44, 0.22);
+    padding: 5px 13px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+}

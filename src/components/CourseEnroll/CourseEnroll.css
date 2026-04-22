@@ -1,0 +1,344 @@
+/* ══════════════════════════════════════
+   CourseEnroll — Glassmorphism CTA
+   with Enrollment Form + Excel Export
+   ══════════════════════════════════════ */
+
+.ce-section {
+    padding: 100px 0;
+    background: var(--bg-primary);
+}
+
+.ce-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 32px;
+}
+
+/* Main glass container */
+.ce-glass {
+    position: relative;
+    overflow: hidden;
+    background: rgba(32, 32, 32, 0.42);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    border: 1px solid rgba(248, 248, 248, 0.08);
+    border-radius: 28px;
+    padding: 56px;
+    display: flex;
+    gap: 60px;
+    box-shadow:
+        0 40px 120px rgba(0, 0, 0, 0.5),
+        inset 0 1px 0 rgba(248, 248, 248, 0.06);
+}
+
+/* Ambient glow blobs */
+.ce-glow {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(100px);
+    opacity: 0.25;
+}
+
+.ce-glow-1 {
+    width: 500px; height: 500px;
+    background: rgba(93, 214, 44, 0.2);
+    top: -160px; left: -100px;
+}
+
+.ce-glow-2 {
+    width: 400px; height: 400px;
+    background: rgba(244, 187, 255, 0.15);
+    bottom: -110px; right: -80px;
+}
+
+/* Left / Right columns */
+.ce-left {
+    flex: 1.2;
+    position: relative;
+    z-index: 1;
+}
+
+.ce-right {
+    flex: 1;
+    position: relative;
+    z-index: 1;
+}
+
+/* Label */
+.ce-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-subtle);
+    border: 1px solid rgba(93, 214, 44, 0.22);
+    padding: 5px 13px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+}
+
+.ce-title {
+    font-family: var(--font-display);
+    font-size: clamp(26px, 3.2vw, 42px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 14px;
+    color: var(--text-primary);
+}
+
+.ce-grad {
+    background: linear-gradient(130deg, var(--accent) 0%, var(--accent-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.ce-desc {
+    color: var(--text-muted);
+    font-size: 15px;
+    line-height: 1.7;
+    margin-bottom: 30px;
+}
+
+/* Includes */
+.ce-includes { margin-bottom: 28px; }
+
+.ce-includes-heading {
+    font-family: var(--font-display);
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+}
+
+.ce-include-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    font-size: 14px;
+    color: var(--text-muted);
+    padding: 7px 0;
+    border-bottom: 1px solid rgba(248, 248, 248, 0.04);
+    transition: color 0.2s ease;
+}
+
+.ce-include-item:last-child { border-bottom: none; }
+.ce-include-item:hover { color: var(--text-secondary); }
+
+.ce-check {
+    color: var(--accent);
+    flex-shrink: 0;
+    margin-top: 1px;
+}
+
+/* Quick contact */
+.ce-contact {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-top: 8px;
+}
+
+.ce-contact-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 11px;
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.ce-contact-row > div {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.ce-contact-icon        { color: var(--accent); flex-shrink: 0; margin-top: 2px; }
+.ce-contact-icon--purple { color: var(--pal-pink); }
+.ce-contact-icon--green  { color: var(--pal-green-bright); }
+
+/* RIGHT: Form card */
+.ce-form-card {
+    background: rgba(248, 248, 248, 0.035);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 30px;
+}
+
+.ce-form-title {
+    font-family: var(--font-display);
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 20px;
+}
+
+/* Mini stats strip */
+.ce-stats-strip {
+    display: flex;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 22px;
+}
+
+.ce-stat-item {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 12px 8px;
+    gap: 2px;
+    border-right: 1px solid var(--border);
+}
+
+.ce-stat-item:last-child { border-right: none; }
+
+.ce-stat-num {
+    font-family: var(--font-display);
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--accent);
+}
+
+.ce-stat-label {
+    font-size: 10.5px;
+    color: var(--text-muted);
+    font-weight: 600;
+    letter-spacing: 0.05em;
+}
+
+/* Form fields */
+.ce-field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+    margin-bottom: 14px;
+}
+
+.ce-field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-bottom: 14px;
+}
+
+.ce-field:last-of-type { margin-bottom: 18px; }
+
+.ce-field label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+}
+
+.ce-field input,
+.ce-field select {
+    background: rgba(248, 248, 248, 0.04);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 10px 14px;
+    font-size: 14px;
+    color: var(--text-primary);
+    font-family: var(--font-body);
+    transition: border-color 0.22s ease, box-shadow 0.22s ease;
+    outline: none;
+    width: 100%;
+}
+
+.ce-field input:focus,
+.ce-field select:focus {
+    border-color: rgba(93, 214, 44, 0.4);
+    box-shadow: 0 0 0 3px rgba(93, 214, 44, 0.08);
+}
+
+.ce-field select option {
+    background: var(--bg-card);
+    color: var(--text-primary);
+}
+
+/* Submit button */
+.ce-submit {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 9px;
+    width: 100%;
+    padding: 13px 20px;
+    border-radius: 10px;
+    background: var(--accent);
+    color: var(--bg-primary);
+    font-family: var(--font-display);
+    font-size: 14px;
+    font-weight: 800;
+    border: none;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    margin-bottom: 10px;
+}
+
+.ce-submit:hover:not(:disabled) {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 28px var(--accent-glow);
+}
+
+.ce-submit:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.ce-submit--sent {
+    background: var(--pal-green-bright) !important;
+}
+
+/* Spin animation */
+.ce-spin {
+    animation: ce-rotate 1s linear infinite;
+}
+
+@keyframes ce-rotate {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+
+.ce-error {
+    margin: 0 0 12px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    font-size: 13px;
+    line-height: 1.45;
+    color: #fecaca;
+    background: rgba(239, 68, 68, 0.12);
+    border: 1px solid rgba(239, 68, 68, 0.35);
+}
+
+.ce-note {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    justify-content: center;
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.ce-note svg { opacity: 0.6; }
+
+/* Responsive */
+@media (max-width: 980px) {
+    .ce-glass { flex-direction: column; padding: 34px 26px; gap: 36px; }
+    .ce-field-row { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 580px) {
+    .ce-inner { padding: 0 18px; }
+}

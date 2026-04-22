@@ -1,0 +1,156 @@
+/* ══════════════════════════════════
+   CourseOverview — Program Why Cards
+   ══════════════════════════════════ */
+
+.cov-section {
+    padding: 96px 0;
+    background: var(--bg-surface);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+
+.cov-inner {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 32px;
+}
+
+/* Label pill */
+.cov-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11.5px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: var(--accent-subtle);
+    border: 1px solid rgba(93, 214, 44, 0.22);
+    padding: 5px 13px;
+    border-radius: 100px;
+    margin-bottom: 18px;
+}
+
+.cov-label-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px var(--accent-glow);
+}
+
+.cov-title {
+    font-family: var(--font-display);
+    font-size: clamp(28px, 3.8vw, 46px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.1;
+    margin-bottom: 14px;
+    color: var(--text-primary);
+}
+
+.cov-grad {
+    background: linear-gradient(130deg, var(--accent) 0%, var(--accent-light) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.cov-sub {
+    color: var(--text-muted);
+    font-size: 15.5px;
+    max-width: 560px;
+    margin-bottom: 52px;
+    line-height: 1.7;
+}
+
+/* Grid */
+.cov-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+/* Card */
+.cov-card {
+    position: relative;
+    padding: 28px 26px;
+    border-radius: 16px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.cov-card-top-line {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    border-radius: 16px 16px 0 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.cov-card:hover .cov-card-top-line { opacity: 1; }
+
+.cov-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+    border-color: var(--border-strong);
+}
+
+/* Color variants for top line */
+.cov-card--lime .cov-card-top-line       { background: var(--accent); }
+.cov-card--green .cov-card-top-line      { background: var(--pal-green-bright); }
+.cov-card--olive .cov-card-top-line      { background: var(--pal-olive); }
+.cov-card--pink .cov-card-top-line       { background: var(--pal-pink); }
+.cov-card--red .cov-card-top-line        { background: #ef4444; }
+.cov-card--teal .cov-card-top-line       { background: #06b6d4; }
+
+/* Icon */
+.cov-icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    border: 1px solid var(--border);
+    background: rgba(248, 248, 248, 0.04);
+    transition: transform 0.25s ease;
+}
+
+.cov-card:hover .cov-icon { transform: scale(1.08); }
+
+.cov-icon--lime  { color: var(--accent); border-color: rgba(93, 214, 44, 0.25); }
+.cov-icon--green { color: var(--pal-green-bright); border-color: rgba(93, 214, 44, 0.2); }
+.cov-icon--olive { color: #c8c800; border-color: rgba(128,128,0,0.3); }
+.cov-icon--pink  { color: var(--pal-pink); border-color: rgba(244,187,255,0.3); }
+.cov-icon--red   { color: #f87171; border-color: rgba(239,68,68,0.25); }
+.cov-icon--teal  { color: #22d3ee; border-color: rgba(6,182,212,0.25); }
+
+.cov-card-title {
+    font-family: var(--font-display);
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 9px;
+    color: var(--text-primary);
+}
+
+.cov-card-desc {
+    font-size: 13.5px;
+    color: var(--text-muted);
+    line-height: 1.65;
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+    .cov-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 580px) {
+    .cov-grid { grid-template-columns: 1fr; }
+    .cov-inner { padding: 0 18px; }
+}
