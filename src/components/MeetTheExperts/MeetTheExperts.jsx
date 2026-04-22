@@ -10,6 +10,7 @@ const experts = [
         name: "Vishal Kumar",
         role: "Founder & CEO",
         avatar: "/assets/avatars/CEO.jpeg",
+        link: "https://share.google/KP5nK4H0RXjyPspQL",
         vision: "Security education must be forged in the heat of real attacks, not built on slides. I founded Thread Security to close the gap between classroom theory and the front lines of modern cyber warfare.",
         trajectory: "Started as a red-team operator at Fortune 500 banks • Led breach-response engagements across 3 continents • Now building the academy he never had.",
         accent: "#4ade80",
@@ -224,7 +225,13 @@ function MeetTheExperts() {
                                     <div className="expert-flip-face expert-flip-front">
                                         <div className="expert-front-avatar">
                                             {expert.avatar ? (
-                                                <img src={expert.avatar} alt={expert.name} loading="lazy" />
+                                                expert.link ? (
+                                                    <a href={expert.link} target="_blank" rel="noopener noreferrer" className="expert-avatar-link">
+                                                        <img src={expert.avatar} alt={expert.name} loading="lazy" />
+                                                    </a>
+                                                ) : (
+                                                    <img src={expert.avatar} alt={expert.name} loading="lazy" />
+                                                )
                                             ) : (
                                                 <div className="expert-front-avatar-placeholder">
                                                     <User size={80} opacity={0.25} />
@@ -244,7 +251,13 @@ function MeetTheExperts() {
                                         <div className="expert-back-header">
                                             <div className="expert-back-mini-avatar">
                                                 {expert.avatar ? (
-                                                    <img src={expert.avatar} alt={expert.name} />
+                                                    expert.link ? (
+                                                        <a href={expert.link} target="_blank" rel="noopener noreferrer" className="expert-avatar-link">
+                                                            <img src={expert.avatar} alt={expert.name} />
+                                                        </a>
+                                                    ) : (
+                                                        <img src={expert.avatar} alt={expert.name} />
+                                                    )
                                                 ) : (
                                                     <User size={24} />
                                                 )}
