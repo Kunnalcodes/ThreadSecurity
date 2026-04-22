@@ -81,7 +81,7 @@ function Vision() {
                     <blockquote>
                         The next generation of defenders will not learn security from textbooks. They will earn it — under pressure, inside live attack scenarios, guided by those who have already been on the front lines.
                     </blockquote>
-                    <p className="manifesto-author">— Founder, Cyberyaan</p>
+                    <p className="manifesto-author">— Founder, Thread Security</p>
                 </div>
             </div>
         </section>

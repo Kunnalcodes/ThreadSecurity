@@ -9,7 +9,7 @@ function Footer() {
                     {/* Brand */}
                     <div className="footer-brand">
                         <a href="#" className="footer-logo">
-                            <img src={brandLogo} alt="Cyberyaan Academy" className="footer-brand-img" />
+                            <img src={brandLogo} alt="Thread Security Academy" className="footer-brand-img" />
                         </a>
                         <p className="footer-tagline">
                             Premium cybersecurity education platform. Career-focused tracks built for
@@ -106,7 +106,7 @@ function Footer() {
                 </div>
 
                 <div className="footer-bottom">
-                    <p>© 2026 Cyberyaan Academy. All rights reserved.</p>
+                    <p>© 2026 Thread Security Academy. All rights reserved.</p>
                     <div className="footer-bottom-links">
                         <a href="#">Privacy Policy</a>
                         <a href="#">Terms of Service</a>
