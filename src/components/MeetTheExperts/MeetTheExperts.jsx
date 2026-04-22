@@ -12,7 +12,7 @@ const experts = [
         avatar: "/assets/avatars/CEO.jpeg",
         link: "https://share.google/KP5nK4H0RXjyPspQL",
         vision: "Security education must be forged in the heat of real attacks, not built on slides. I founded Thread Security to close the gap between classroom theory and the front lines of modern cyber warfare.",
-        trajectory: "Started as a red-team operator at Fortune 500 banks • Led breach-response engagements across 3 continents • Now building the academy he never had.",
+        trajectory: "We don’t just teach cybersecurity  we train students to perform in the real world. At Thread Security, our focus is on hands on bug bounty and practical security skills. This is what happens when learning goes beyond theory.",
         accent: "#4ade80",
         accentBorder: "rgba(74, 222, 128, 0.3)",
         glow: "rgba(74, 222, 128, 0.2)",
@@ -29,28 +29,28 @@ const experts = [
         glow: "rgba(34, 197, 94, 0.18)",
         shadow: "rgba(34, 197, 94, 0.06)"
     },
-    {
-        name: "Marcus Thorne",
-        role: "AI / ML Security Mentor",
-        avatar: "/assets/avatars/marcus.png",
-        vision: "The next frontier of cyber defence is autonomous and adaptive. I train engineers to harness adversarial ML — not fear it — so their systems can heal themselves under fire.",
-        trajectory: "ML researcher at a Tier-1 AI lab • 3 published papers on autonomous threat response • Building AI-driven detection pipelines that power Thread Security's live labs.",
-        accent: "#10b981",
-        accentBorder: "rgba(16, 185, 129, 0.3)",
-        glow: "rgba(16, 185, 129, 0.18)",
-        shadow: "rgba(16, 185, 129, 0.06)"
-    },
-    {
-        name: "Sarah Chen",
-        role: "Principal Software Developer",
-        avatar: "/assets/avatars/sarah.png",
-        vision: "Zero-trust isn't a product — it's a philosophy. I teach engineers to design systems where breaches are assumed and every layer is hardened before the attacker arrives.",
-        trajectory: "CISSP certified • 12 yrs across cloud infra, SIEM integration & DevSecOps • Pioneered zero-trust rollouts at two global financial institutions.",
-        accent: "#059669",
-        accentBorder: "rgba(5, 150, 105, 0.3)",
-        glow: "rgba(5, 150, 105, 0.18)",
-        shadow: "rgba(5, 150, 105, 0.06)"
-    }
+    // {
+    //     name: "Marcus Thorne",
+    //     role: "AI / ML Security Mentor",
+    //     avatar: "/assets/avatars/marcus.png",
+    //     vision: "The next frontier of cyber defence is autonomous and adaptive. I train engineers to harness adversarial ML — not fear it — so their systems can heal themselves under fire.",
+    //     trajectory: "ML researcher at a Tier-1 AI lab • 3 published papers on autonomous threat response • Building AI-driven detection pipelines that power Thread Security's live labs.",
+    //     accent: "#10b981",
+    //     accentBorder: "rgba(16, 185, 129, 0.3)",
+    //     glow: "rgba(16, 185, 129, 0.18)",
+    //     shadow: "rgba(16, 185, 129, 0.06)"
+    // },
+    // {
+    //     name: "Sarah Chen",
+    //     role: "Principal Software Developer",
+    //     avatar: "/assets/avatars/sarah.png",
+    //     vision: "Zero-trust isn't a product — it's a philosophy. I teach engineers to design systems where breaches are assumed and every layer is hardened before the attacker arrives.",
+    //     trajectory: "CISSP certified • 12 yrs across cloud infra, SIEM integration & DevSecOps • Pioneered zero-trust rollouts at two global financial institutions.",
+    //     accent: "#059669",
+    //     accentBorder: "rgba(5, 150, 105, 0.3)",
+    //     glow: "rgba(5, 150, 105, 0.18)",
+    //     shadow: "rgba(5, 150, 105, 0.06)"
+    // }
 ];
 
 function MeetTheExperts() {
