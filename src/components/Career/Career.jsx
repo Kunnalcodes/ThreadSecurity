@@ -1,16 +1,17 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { variants, staggerContainer } from '../AnimatedSection/AnimatedSection';
+import roadmapPdf from '../../assets/Roadmap.pdf';
 import './Career.css';
 
 const careers = [
-    { role: 'Penetration Tester', track: 'OFFENSIVE TRACK', salary: 'Avg. $120k – $180k / yr', avgPay: 'Avg $150k/yr', demand: 92, color: 'red', skills: ['Metasploit', 'Burp Suite', 'Active Directory', 'Python'], desc: 'Legally break into enterprise systems to identify vulnerabilities before attackers do. Simulate real-world attacks using industry toolkits like Metasploit, Burp Suite, and custom exploits.' },
-    { role: 'Cloud Security Engineer', track: 'INFRASTRUCTURE TRACK', salary: 'Avg. $130k – $195k / yr', avgPay: 'Avg $162k/yr', demand: 88, color: 'blue', skills: ['AWS IAM', 'Terraform', 'CSPM', 'Zero Trust'], desc: 'Design and enforce security controls across AWS, Azure, and GCP. Implement IAM hardening, zero-trust networking, and automated misconfiguration detection at cloud scale.' },
-    { role: 'Bug Bounty Researcher', track: 'RESEARCH TRACK', salary: '$5k – $500k+ per report', avgPay: 'Uncapped', demand: 76, color: 'orange', skills: ['XSS / SQLi', 'SSRF', 'IDOR', 'Report Writing'], desc: 'Hunt vulnerabilities independently across HackerOne and Bugcrowd programs for Google, Meta, Tesla and more. Top hunters earn $500k+ annually from payouts alone.' },
-    { role: 'DevSecOps Engineer', track: 'DEFENSE TRACK', salary: 'Avg. $125k – $175k / yr', avgPay: 'Avg $148k/yr', demand: 85, color: 'green', skills: ['GitHub Actions', 'SAST / DAST', 'Docker', 'Vault'], desc: 'Shift security left by embedding automated testing, SAST/DAST scanning, and secrets management directly into CI/CD pipelines.' },
-    { role: 'AI Security Engineer', track: 'EMERGING TECH TRACK', salary: 'Avg. $155k – $220k / yr', avgPay: 'Avg $185k/yr', demand: 97, color: 'purple', skills: ['LLM Red-Teaming', 'Prompt Injection', 'RAG Security', 'Model Evals'], desc: 'Red-team LLMs, defend against prompt injection, and harden agentic pipelines. One of the fastest-growing roles in the industry.' },
-    { role: 'Threat Intel Analyst', track: 'INTELLIGENCE TRACK', salary: 'Avg. $100k – $155k / yr', avgPay: 'Avg $128k/yr', demand: 80, color: 'yellow', skills: ['MITRE ATT&CK', 'OSINT', 'YARA Rules', 'Maltego'], desc: 'Monitor and analyze APT campaigns, decode adversarial TTPs using MITRE ATT&CK, and produce actionable intelligence reports.' },
-    { role: 'SOC Analyst Tier 2/3', track: 'OPS TRACK', salary: 'Avg. $90k – $140k / yr', avgPay: 'Avg $115k/yr', demand: 83, color: 'slate', skills: ['Splunk', 'EDR / XDR', 'DFIR', 'SIEM'], desc: 'Lead incident response and digital forensics at the front lines of enterprise defense. Triage complex alerts, contain breaches, and author post-incident reports.' },
+    { role: 'Certified Ethical Hacker', track: 'OFFENSIVE TRACK', salary: 'Avg. $120k – $180k / yr', avgPay: 'Avg $150k/yr', demand: 92, color: 'red', skills: ['Metasploit', 'Burp Suite', 'Active Directory', 'Python'], desc: 'Legally break into enterprise systems to identify vulnerabilities before attackers do. Simulate real-world attacks using industry toolkits like Metasploit, Burp Suite, and custom exploits.', docs: roadmapPdf },
+    { role: 'Cloud Security Engineer', track: 'INFRASTRUCTURE TRACK', salary: 'Avg. $130k – $195k / yr', avgPay: 'Avg $162k/yr', demand: 88, color: 'blue', skills: ['AWS IAM', 'Terraform', 'CSPM', 'Zero Trust'], desc: 'Design and enforce security controls across AWS, Azure, and GCP. Implement IAM hardening, zero-trust networking, and automated misconfiguration detection at cloud scale.', docs: roadmapPdf },
+    { role: 'Bug Bounty Researcher', track: 'RESEARCH TRACK', salary: '$5k – $500k+ per report', avgPay: 'Uncapped', demand: 76, color: 'orange', skills: ['XSS / SQLi', 'SSRF', 'IDOR', 'Report Writing'], desc: 'Hunt vulnerabilities independently across HackerOne and Bugcrowd programs for Google, Meta, Tesla and more. Top hunters earn $500k+ annually from payouts alone.', docs: roadmapPdf },
+    { role: 'DevSecOps Engineer', track: 'DEFENSE TRACK', salary: 'Avg. $125k – $175k / yr', avgPay: 'Avg $148k/yr', demand: 85, color: 'green', skills: ['GitHub Actions', 'SAST / DAST', 'Docker', 'Vault'], desc: 'Shift security left by embedding automated testing, SAST/DAST scanning, and secrets management directly into CI/CD pipelines.', docs: roadmapPdf },
+    { role: 'AI Security Engineer', track: 'EMERGING TECH TRACK', salary: 'Avg. $155k – $220k / yr', avgPay: 'Avg $185k/yr', demand: 97, color: 'purple', skills: ['LLM Red-Teaming', 'Prompt Injection', 'RAG Security', 'Model Evals'], desc: 'Red-team LLMs, defend against prompt injection, and harden agentic pipelines. One of the fastest-growing roles in the industry.', docs: roadmapPdf },
+    { role: 'Threat Intel Analyst', track: 'INTELLIGENCE TRACK', salary: 'Avg. $100k – $155k / yr', avgPay: 'Avg $128k/yr', demand: 80, color: 'yellow', skills: ['MITRE ATT&CK', 'OSINT', 'YARA Rules', 'Maltego'], desc: 'Monitor and analyze APT campaigns, decode adversarial TTPs using MITRE ATT&CK, and produce actionable intelligence reports.', docs: roadmapPdf },
+    { role: 'SOC Analyst Tier 2/3', track: 'OPS TRACK', salary: 'Avg. $90k – $140k / yr', avgPay: 'Avg $115k/yr', demand: 83, color: 'slate', skills: ['Splunk', 'EDR / XDR', 'DFIR', 'SIEM'], desc: 'Lead incident response and digital forensics at the front lines of enterprise defense. Triage complex alerts, contain breaches, and author post-incident reports.', docs: roadmapPdf },
 ];
 
 const CIRC = 163.4;
@@ -21,6 +22,18 @@ function Career() {
     const c = careers[active];
     const pct = (active + 1) / careers.length;
     const offset = CIRC * (1 - pct);
+
+    const handleDownload = (e, docPath) => {
+        e.stopPropagation();
+        if (!docPath) return;
+        
+        const link = document.createElement('a');
+        link.href = docPath;
+        link.download = docPath.split('/').pop();
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+    };
 
     return (
         <section className="career-section" id="career">
@@ -118,7 +131,10 @@ function Career() {
                                 </div>
 
                                 {/* CTA */}
-                                <button className={`cc-cta cc-${item.color}-cta`}>
+                                <button 
+                                    className={`cc-cta cc-${item.color}-cta`}
+                                    onClick={(e) => handleDownload(e, item.docs)}
+                                >
                                     <span>View Learning Roadmap →</span>
                                 </button>
                             </motion.div>
