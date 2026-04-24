@@ -22,6 +22,7 @@ const experts = [
         name: "Sujal Tiwari",
         role: "Chief Technology Officer",
         avatar: "/assets/avatars/CTO.jpeg",
+        link: "https://www.linkedin.com/in/-sujaltiwari",
         vision: "Exploit research is an art form. My goal at Thread Security is to teach students to see systems the way attackers do — so defenders can always be one step ahead.",
         trajectory: "Published CVE researcher • 10+ yrs in zero-day discovery & exploit automation • Designed offensive CTF infra used by global security conferences.",
         accent: "#22c55e",
