@@ -5,13 +5,13 @@ import './Testimonials.css';
 
 const testimonials = [
     {
-        quote: "The labs mirrored real-world bug bounty workflows perfectly. I transitioned from a basic understanding to identifying critical vulnerabilities within weeks of finishing the course.",
+        quote: "Thread Security was a turning point. As a 6th-sem GNA student, I got real hands-on cybersecurity experience — and earned $1,500 in bounties. It built my confidence and proved my skills have real-world value. Highly recommended for anyone serious about a cybersecurity career.",
         badges: [
-            { id: 1, text: "CVE Published", icon: <Award size={14} /> },
-            { id: 2, text: "OSCP Certified", icon: <Award size={14} /> }
+            { id: 1, text: "Bug Bounty Hunter", icon: <Award size={14} /> },
+            { id: 2, text: "Ethical Hacker", icon: <Award size={14} /> }
         ],
-        name: "Alex Rivers",
-        role: "Security Analyst @ CyberGuard",
+        name: "Monu ",
+        role: "Aspiring Security Analyst",
     },
     {
         quote: "Unlike other bootcamps, this curriculum cuts through the marketing fluff. The focus on kernel-level exploits and advanced persistence gave me the edge I needed for my promotion.",
