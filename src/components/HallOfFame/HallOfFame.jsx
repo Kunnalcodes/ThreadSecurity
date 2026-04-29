@@ -6,9 +6,9 @@ import './HallOfFame.css';
 
 const insights = [
     {
-        quote: "The future of security isn't about better locks, it's about smarter observers. AI will redefine the role of the defender.",
-        name: "Dr. Elena Volkov",
-        role: "Head of Research"
+        quote: "Honoring the minds who secured, solved, and proved their skills through real-world security wins.",
+        name: "Monu ",
+        role: "Aspiring Security Analyst"
     },
     {
         quote: "We are entering an era of 'Prompt Exploitation' where the human-machine interface becomes the primary attack vector.",
