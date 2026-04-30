@@ -8,44 +8,34 @@ import eventImg2 from '../../assets/threadsecurity__cybersecurity__blockchain__h
 const mentors = [
     {
         id: 1,
-        name: "Alex Volkov",
-        role: "Founder & Head of Offensive Security",
-        expertise: ["Red Teaming", "Zero-Day Research", "Exploit Dev"],
-        bio: "Former lead at multiple advanced threat groups. Alex specializes in tearing down secure perimeters and finding vulnerabilities where none seem to exist.",
+        name: "Vishal Kumar",
+        role: "Founder & Head of Thread Security",
+        expertise: ["CEH","Red Teaming", "Zero-Day Research", "Exploit Dev"],
+        bio: "Former lead at multiple advanced threat groups. Vishal specializes in tearing down secure perimeters and finding vulnerabilities where none seem to exist.",
         icon: <Zap size={24} />,
         accent: "#afff00",
-        stats: { engagements: "150+", bounties: "$2M+", students: "500+" }
+        stats: { engagements: "100+", bounties: "20+", students: "10+" }
     },
     {
         id: 2,
-        name: "Elena Vance",
-        role: "Lead Defensive Architect",
-        expertise: ["Cloud Security", "Zero Trust", "Threat Hunting"],
-        bio: "Elena architects the unbreachable. She shifted from hunting hackers to building the infrastructure they can't penetrate. Her modules are legendarily tough.",
+        name: "Sujal Tiwari",
+        role: "Chief Technical Officer (Thread Security)",
+        expertise: ["Cloud Security", "Zero Trust", "Threat Hunting", "Red Teaming"],
+        bio: "Sujal architects the unbreachable. He shifted from hunting hackers to building the infrastructure they can't penetrate. His modules are legendarily tough.",
         icon: <Shield size={24} />,
         accent: "#5dd62c",
-        stats: { engagements: "300+", architectures: "50+", students: "1200+" }
+        stats: { engagements: "100+", bounties: "10+", students: "100+" }
     },
     {
         id: 3,
-        name: "Marcus Thorne",
-        role: "AI Threat Specialist",
-        expertise: ["Adversarial ML", "Automated Defense", "Data Poisoning"],
-        bio: "The line between AI and cybersecurity is where Marcus lives. He trains students to build autonomous response systems and attack competing ML models.",
+        name: "Monu",
+        role: "Threat Analyst",
+        expertise: ["Bug Bounty Hunter", "Red Teaming", "Vulnerability Tester", "AWS Academy Technician"],
+        bio: "Cybersecurity professional with a strong focus on threat analysis, incident response, and vulnerability management. Experienced in identifying and mitigating security risks in complex IT environments.",
         icon: <Terminal size={24} />,
         accent: "#00fff5",
-        stats: { papers: "12", modelsDefeated: "45", students: "350+" }
+        stats: { yearsInIndustry: "3", students: "100+" }
     },
-    {
-        id: 4,
-        name: "Sarah Chen",
-        role: "Cryptography & Blockchain",
-        expertise: ["Smart Contract Audits", "DeFi Security", "Cryptography"],
-        bio: "Sarah dissects the math behind the money. If there's a flaw in the logic of a decentralized system, she'll find it—and teach you how to patch it.",
-        icon: <Code size={24} />,
-        accent: "#f4bbff",
-        stats: { audits: "80+", vulnerabilities: "200+", students: "800+" }
-    }
 ];
 
 function MentorSection() {
@@ -76,7 +66,7 @@ function MentorSection() {
             <div 
                 className="mentor-bg-grid" 
                 style={{
-                    transform: `rotateX(${origin + mousePos.y * 10}deg) rotateY(${mousePos.x * 10}deg)`
+                    transform: `rotateX(${0 + mousePos.y * 10}deg) rotateY(${mousePos.x * 10}deg)`
                 }}
             ></div>
 
@@ -222,15 +212,15 @@ function MentorSection() {
             <div className="mentor-impact">
                 <div className="impact-grid">
                     <motion.div className="impact-card" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }}>
-                        <h4>10,000+</h4>
+                        <h4>200+</h4>
                         <p>Students Mentored</p>
                     </motion.div>
                     <motion.div className="impact-card" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }}>
-                        <h4>$5M+</h4>
+                        <h4>20L+</h4>
                         <p>Bounties Secured</p>
                     </motion.div>
                     <motion.div className="impact-card" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }}>
-                        <h4>50+</h4>
+                        <h4>10+</h4>
                         <p>Enterprise Partners</p>
                     </motion.div>
                     <motion.div className="impact-card" initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }}>

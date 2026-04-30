@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from 'react';
-import { Menu, X, ChevronDown, Sun, Moon, User, LogOut, ShieldCheck } from 'lucide-react';
+import { Menu, X, ChevronDown, User, LogOut, ShieldCheck } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTheme } from '../../context/ThemeContext';
 import { useAuth } from '../../context/AuthContext';
@@ -76,7 +76,6 @@ function Navbar() {
     const [activeDropdown, setActiveDropdown] = useState(null);
     const [mobileExpanded, setMobileExpanded] = useState(null);
     const dropdownTimeoutRef = useRef(null);
-    const { theme, toggleTheme } = useTheme();
     const { user, isAuthenticated, logout } = useAuth();
     const navigate = useNavigate();
 
@@ -187,9 +186,7 @@ function Navbar() {
                     </div>
 
                     <Link to="/mentorship" className="nav-link">Mentorship</Link>
-                    <button className="theme-toggle" onClick={toggleTheme} aria-label="Toggle theme">
-                        {theme === 'dark' ? <Sun size={18} /> : <Moon size={18} />}
-                    </button>
+
 
                     {isAuthenticated ? (
                         <div className="nav-auth-group">

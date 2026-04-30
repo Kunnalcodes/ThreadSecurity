@@ -109,26 +109,7 @@
     transform: rotate(180deg);
 }
 
-/* Theme Toggle */
-.theme-toggle {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    width: 2.2rem;
-    height: 2.2rem;
-    border-radius: 0.5rem;
-    border: 1px solid var(--border);
-    background: var(--bg-card);
-    color: var(--accent);
-    cursor: pointer;
-    transition: all 0.3s cubic-bezier(0.22, 0.8, 0.36, 1);
-    margin-left: 0.3rem;
-}
-.theme-toggle:hover {
-    background: var(--accent-subtle);
-    border-color: var(--accent);
-    transform: rotate(15deg) scale(1.08);
-}
+
 
 /* CTA Button – Outline (Login) */
 .nav-btn-outline {

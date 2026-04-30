@@ -86,7 +86,7 @@
 .mentor-carousel {
     position: relative;
     width: 380px;
-    height: 480px;
+    height: 580px;
     transform-style: preserve-3d;
     transition: transform 0.3s ease-out;
 }
