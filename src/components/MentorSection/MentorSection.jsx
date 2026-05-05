@@ -34,7 +34,7 @@ const mentors = [
         bio: "Cybersecurity professional with a strong focus on threat analysis, incident response, and vulnerability management. Experienced in identifying and mitigating security risks in complex IT environments.",
         icon: <Terminal size={24} />,
         accent: "#00fff5",
-        stats: { yearsInIndustry: "3", students: "100+" }
+        stats: { engagements: "100+", bounties: "$1500", students: "10+" }
     },
 ];
 
