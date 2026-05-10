@@ -1,54 +1,11 @@
-import { useRef, useState, useEffect, Suspense } from 'react';
-import { motion } from 'framer-motion';
-import { Canvas } from '@react-three/fiber';
-import { useGLTF, OrbitControls, Environment } from '@react-three/drei';
-import { useFrame } from '@react-three/fiber';
+import { useRef, useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import threadVideo from '../../assets/Thread_Logo.mp4';
 import './HeroSection.css';
+import { useNavigate } from 'react-router-dom';
 
-/* ── 3D Robot Mascot ── */
-// Use a constant cache buster evaluated once to bypass Chrome's blockfile cache bug
-// without causing infinite renders in React Suspense.
-const modelUrl = `./robot_playground.glb?cb=${Date.now()}`;
 
-function RobotModel() {
-  const { scene } = useGLTF(modelUrl);
-  const groupRef = useRef();
 
-  // Wave movement / Floating
-  useFrame((state) => {
-    const t = state.clock.getElapsedTime();
-    if (groupRef.current) {
-      groupRef.current.position.y = Math.sin(t * 1.5) * 0.1 - 0.2;
-      groupRef.current.rotation.z = Math.sin(t * 1.2) * 0.05;
-      groupRef.current.rotation.x = 0.15 + Math.cos(t * 0.8) * 0.03;
-    }
-  });
-
-  // Apply Black & Green theme to materials
-  useEffect(() => {
-    scene.traverse((child) => {
-      if (child.isMesh) {
-        // We can create a cyber-glow effect by using a dark base and green emissive
-        child.material.color.set('#0a0a0a'); // Very dark black
-        if (child.material.emissive) {
-          child.material.emissive.set('#00ff41'); // Neon green glow
-          child.material.emissiveIntensity = 1.2;
-        }
-        child.material.roughness = 0.1;
-        child.material.metalness = 0.8;
-      }
-    });
-  }, [scene]);
-
-  return (
-    <primitive
-      ref={groupRef}
-      object={scene}
-      scale={2.4}
-      position={[0, -0.2, 0]}
-    />
-  );
-}
 /* ── Particle Field ── */
 function ParticleField() {
   const canvasRef = useRef(null);
@@ -150,7 +107,7 @@ function Ticker() {
 function TerminalWelcome() {
   const [text, setText] = useState('');
   const fullText = '> welcome to threadsecurity academy_';
-  
+
   useEffect(() => {
     let i = 0;
     const timer = setInterval(() => {
@@ -168,10 +125,50 @@ function TerminalWelcome() {
   );
 }
 
-/* ── Main Hero ── */
 export default function HeroSection() {
+  const navigate = useNavigate();
   const [btnState, setBtnState] = useState('idle'); // idle | loading | done
   const [progress, setProgress] = useState(0);
+  const [showModal, setShowModal] = useState(false);
+  const [formStatus, setFormStatus] = useState('idle'); // idle | sending | success
+
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    course: 'Cybersecurity Foundation'
+  });
+
+  const handleCurriculumClick = () => {
+    const section = document.getElementById('career');
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleEnrollClick = () => {
+    setShowModal(true);
+  };
+
+  const handleFormSubmit = async (e) => {
+    e.preventDefault();
+    setFormStatus('sending');
+
+    // Simulate linking to an excel/google sheet via an API call
+    // In a real scenario, this would be a Google Apps Script URL or a backend endpoint
+    try {
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      console.log('Form submitted to Excel/Sheets:', formData);
+      setFormStatus('success');
+      setTimeout(() => {
+        setShowModal(false);
+        setFormStatus('idle');
+        setFormData({ name: '', email: '', phone: '', course: 'Cybersecurity Foundation' });
+      }, 2500);
+    } catch (err) {
+      setFormStatus('idle');
+    }
+  };
 
   // Enroll progress
   useEffect(() => {
@@ -217,108 +214,83 @@ export default function HeroSection() {
         <div className="nav-id">ID:&nbsp;<span className="nav-id-val">OPSEC_7F2A</span></div>
       </div>
 
-      {/* ── FULL SCREEN 3D CANVAS ── */}
-      <div className="hero-3d-container">
-        <Canvas
-          camera={{ position: [0, 0, 10], fov: 45 }}
-          gl={{ antialias: true, alpha: true }}
-          style={{ width: '100%', height: '100%' }}
-        >
-          <ambientLight intensity={0.4} />
-          <directionalLight position={[4, 6, 4]} intensity={1.2} color="#ffffff" />
-          <pointLight position={[-2, 2, 2]} intensity={1.5} color="#00ff41" />
-          <pointLight position={[2, -2, 1]} intensity={0.6} color="#00ccff" />
-          <Suspense fallback={null}>
-            {/* We position the whole group to the right-ish area of the screen */}
-            <group position={[3.5, -1.8, 0]}>
-              <RobotModel />
-            </group>
-            <Environment preset="night" />
-          </Suspense>
-          <OrbitControls
-            enableZoom={false}
-            enablePan={false}
-            autoRotate
-            autoRotateSpeed={0.8}
-          />
-        </Canvas>
-      </div>
 
-      {/* Main content */}
+
       <div className="hs-inner">
-
-        {/* ── LEFT ── */}
-        <motion.div 
+        {/* ── LEFT: TEXT ── */}
+        <motion.div
           className="hs-left"
           initial={{ opacity: 0, x: -40 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
         >
+          <div className="hs-left-content">
+            <div className="badge">
+              <span className="badge-ping" />
+              <span className="badge-text">ISO 27001 Certified</span>
+            </div>
 
-          <div className="badge">
-            <span className="badge-ping" />
-            <span className="badge-text">ISO 27001 Certified</span>
+            <TerminalWelcome />
+
+            <h1 className="hs-title">
+              <span className="title-dim">Secure the</span>
+              <span className="title-main">Digital Frontier</span>
+              <span className="title-sub">Before it secures you.</span>
+            </h1>
+
+            <p className="hs-desc">
+              Elite training for the next generation of operatives. 
+              Forged in real-world simulations.
+            </p>
+
+            <div className="cta-row">
+              <button className="btn-primary">
+                <span>Start Training</span>
+                <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                  <path d="M4 10h12M11 5l5 5-5 5" />
+                </svg>
+              </button>
+
+              <button
+                className={`btn-enroll ${btnState}`}
+                onClick={handleEnrollClick}
+              >
+                <span className="enroll-icon">⬡</span> Enroll Free
+              </button>
+
+              <button className="btn-ghost" onClick={handleCurriculumClick}>
+                View Curriculum ↗
+              </button>
+            </div>
           </div>
-
-          <TerminalWelcome />
-
-          <h1 className="hs-title">
-            <span className="title-dim">Secure the</span>
-            <span className="title-main">Digital<br />Frontier</span>
-            <span className="title-sub">Before It Secures You.</span>
-          </h1>
-
-          <p className="hs-desc">
-            Elite cybersecurity training built for operators who move fast.
-            Simulate real attacks, master zero-day defenses, and earn credentials
-            that matter on the ground — not just on paper.
-          </p>
-
-          
-
-          {/* CTAs */}
-          <div className="cta-row">
-            <button className="btn-primary">
-              <span>Start Training</span>
-              <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                <path d="M4 10h12M11 5l5 5-5 5" />
-              </svg>
-            </button>
-
-            <button
-              className={`btn-enroll ${btnState}`}
-              onClick={() => btnState === 'idle' && setBtnState('loading')}
-              disabled={btnState === 'loading'}
-            >
-              {btnState === 'idle' && <><span className="enroll-icon">⬡</span> Enroll Free</>}
-              {btnState === 'loading' && <><span className="enroll-progress">{progress}%</span> Registering…</>}
-              {btnState === 'done' && <><span className="enroll-icon">✓</span> Access Granted</>}
-              {btnState === 'loading' && (
-                <span className="enroll-bar">
-                  <span className="enroll-fill" style={{ width: `${progress}%` }} />
-                </span>
-              )}
-            </button>
-
-            <button className="btn-ghost">
-              View Curriculum ↗
-            </button>
-          </div>
-
         </motion.div>
 
-        {/* ── RIGHT — empty spacer or decorative rings ── */}
-        <motion.div 
+        {/* ── RIGHT: VIDEO ── */}
+        <motion.div
           className="hs-right"
-          initial={{ opacity: 0, x: 40 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.9, ease: "easeOut", delay: 0.1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
         >
-          {/* Decorative rings */}
-          <div className="ring ring-1" />
-          <div className="ring ring-2" />
-        </motion.div>
+          <div className="premium-video-container">
+            <video
+              src={threadVideo}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className="hero-video"
+            />
 
+
+            {/* Ambient glows and marks can stay inside the video container */}
+            <div className="video-glow" />
+            <div className="tech-mark tm-tl" />
+            <div className="tech-mark tm-tr" />
+            <div className="tech-mark tm-bl" />
+            <div className="tech-mark tm-br" />
+          </div>
+        </motion.div>
       </div>
 
       {/* Bottom ticker */}
@@ -327,6 +299,101 @@ export default function HeroSection() {
       {/* Corner brackets */}
       <span className="cb cb-tl" /><span className="cb cb-tr" />
       <span className="cb cb-bl" /><span className="cb cb-br" />
+
+      {/* ── ENQUIRY MODAL ── */}
+      <AnimatePresence>
+        {showModal && (
+          <motion.div
+            className="enq-modal-overlay"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+          >
+            <motion.div
+              className="enq-modal-content"
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+            >
+              <button className="enq-close-btn" onClick={() => setShowModal(false)}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <path d="M18 6L6 18M6 6l12 12" />
+                </svg>
+              </button>
+
+              <div className="enq-modal-header">
+                <div className="enq-modal-badge">ADMISSIONS OPEN</div>
+                <h2 className="enq-modal-title">Secure Your <span>Spot</span></h2>
+                <p className="enq-modal-desc">Fill out the form below to initiate your enrollment process.</p>
+              </div>
+
+              <form className="enq-modal-form" onSubmit={handleFormSubmit}>
+                <div className="enq-input-group">
+                  <label>FULL NAME</label>
+                  <input
+                    type="text"
+                    placeholder="Enter your name"
+                    required
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  />
+                </div>
+
+                <div className="enq-input-row">
+                  <div className="enq-input-group">
+                    <label>EMAIL ADDRESS</label>
+                    <input
+                      type="email"
+                      placeholder="name@email.com"
+                      required
+                      value={formData.email}
+                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    />
+                  </div>
+                  <div className="enq-input-group">
+                    <label>PHONE NUMBER</label>
+                    <input
+                      type="tel"
+                      placeholder="+91 XXXXX XXXXX"
+                      required
+                      value={formData.phone}
+                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                    />
+                  </div>
+                </div>
+
+                <div className="enq-input-group">
+                  <label>COURSE INTEREST</label>
+                  <select
+                    value={formData.course}
+                    onChange={(e) => setFormData({ ...formData, course: e.target.value })}
+                  >
+                    <option>Cybersecurity Foundation</option>
+                    <option>Advanced Ethical Hacking</option>
+                    <option>Cloud Security Specialist</option>
+                    <option>Zero Trust Architecture</option>
+                  </select>
+                </div>
+
+                <button
+                  className={`enq-modal-submit ${formStatus}`}
+                  type="submit"
+                  disabled={formStatus === 'sending'}
+                >
+                  {formStatus === 'idle' && 'SUBMIT ENQUIRY'}
+                  {formStatus === 'sending' && 'CONNECTING TO SERVER...'}
+                  {formStatus === 'success' && 'ENQUIRY LOGGED!'}
+                </button>
+
+                <p className="enq-modal-footer">
+                  By submitting, you agree to our <span>Privacy Policy</span> and <span>Terms of Service</span>.
+                </p>
+              </form>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }
