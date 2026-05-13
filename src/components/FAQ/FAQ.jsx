@@ -120,7 +120,7 @@ function FAQ() {
                     transition={{ duration: 0.7, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
                 >
                     <p className="faq-cta-text">Still have questions?</p>
-                    <a href="#contact" className="faq-cta-btn">
+                    <a href="#enquiry" className="faq-cta-btn">
                         Contact us
                     </a>
                 </motion.div>

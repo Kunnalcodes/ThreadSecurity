@@ -65,7 +65,7 @@ function Enquiry() {
     };
 
     return (
-        <section className="enq-section" id="contact">
+        <section className="enq-section" id="enquiry">
             {/* Background decorations */}
             <div className="enq-bg-orb enq-orb-1" />
             <div className="enq-bg-orb enq-orb-2" />

@@ -131,18 +131,18 @@ function CTA() {
                     training, real labs, lifetime alumni access.
                 </motion.p>
                 <motion.div className="cta-actions" variants={item}>
-                    <button className="cta-btn-primary">
+                    <a href="#enquiry" className="cta-btn-primary">
                         Apply for Admission
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2.5" width="18" height="18">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
                         </svg>
-                    </button>
-                    <button className="cta-btn-ghost">
+                    </a>
+                    <a href="#career" className="cta-btn-ghost">
                         View Curriculum
                         <svg fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth="2" width="16" height="16">
                             <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                         </svg>
-                    </button>
+                    </a>
                 </motion.div>
                 <motion.div className="cta-trust-strip" variants={item}>
                     {['12,000+ graduates', '98% placement rate', 'ISO certified', 'Tier-1 instructors'].map(

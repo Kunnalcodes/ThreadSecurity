@@ -139,6 +139,10 @@ export default function HeroSection() {
     course: 'Cybersecurity Foundation'
   });
 
+  const handleStartTraining = () => {
+    navigate('/course');
+  };
+
   const handleCurriculumClick = () => {
     const section = document.getElementById('career');
     if (section) {
@@ -244,7 +248,7 @@ export default function HeroSection() {
             </p>
 
             <div className="cta-row">
-              <button className="btn-primary">
+              <button className="btn-primary" onClick={handleStartTraining}>
                 <span>Start Training</span>
                 <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                   <path d="M4 10h12M11 5l5 5-5 5" />

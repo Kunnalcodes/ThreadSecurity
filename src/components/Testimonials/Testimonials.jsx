@@ -137,7 +137,7 @@ function Testimonials() {
                     variants={variants.fadeUp}
                     transition={{ duration: 0.7, delay: 0.3, ease: [0.25, 0.1, 0.25, 1] }}
                 >
-                    <a className="btn-glare-container inline-block" href="#">
+                    <a className="btn-glare-container inline-block" href="#enquiry">
                         Join Our Next Cohort
                         <div className="btn-glare"></div>
                     </a>
