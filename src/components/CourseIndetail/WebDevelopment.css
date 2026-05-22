@@ -1,0 +1,6 @@
+.theme-web-development {
+    --course-accent: #ff9900;
+    --course-accent-rgb: 255, 153, 0;
+    --course-accent-glow: rgba(255, 153, 0, 0.25);
+    --course-accent-subtle: rgba(255, 153, 0, 0.08);
+}

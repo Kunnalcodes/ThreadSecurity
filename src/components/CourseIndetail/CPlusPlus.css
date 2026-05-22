@@ -1,0 +1,6 @@
+.theme-c-cpp {
+    --course-accent: #0099ff;
+    --course-accent-rgb: 0, 153, 255;
+    --course-accent-glow: rgba(0, 153, 255, 0.25);
+    --course-accent-subtle: rgba(0, 153, 255, 0.08);
+}

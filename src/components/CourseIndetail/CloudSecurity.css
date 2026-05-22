@@ -1,0 +1,6 @@
+.theme-cloud-security {
+    --course-accent: #ffcc00;
+    --course-accent-rgb: 255, 204, 0;
+    --course-accent-glow: rgba(255, 204, 0, 0.25);
+    --course-accent-subtle: rgba(255, 204, 0, 0.08);
+}

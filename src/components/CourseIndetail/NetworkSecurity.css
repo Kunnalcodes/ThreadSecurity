@@ -1,0 +1,6 @@
+.theme-network-security {
+    --course-accent: #00ff88;
+    --course-accent-rgb: 0, 255, 136;
+    --course-accent-glow: rgba(0, 255, 136, 0.25);
+    --course-accent-subtle: rgba(0, 255, 136, 0.08);
+}

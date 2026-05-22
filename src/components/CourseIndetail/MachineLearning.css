@@ -1,0 +1,6 @@
+.theme-machine-learning {
+    --course-accent: #ff007f;
+    --course-accent-rgb: 255, 0, 127;
+    --course-accent-glow: rgba(255, 0, 127, 0.25);
+    --course-accent-subtle: rgba(255, 0, 127, 0.08);
+}

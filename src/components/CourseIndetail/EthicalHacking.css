@@ -1,0 +1,6 @@
+.theme-ethical-hacking {
+    --course-accent: #5dd62c;
+    --course-accent-rgb: 93, 214, 44;
+    --course-accent-glow: rgba(93, 214, 44, 0.25);
+    --course-accent-subtle: rgba(93, 214, 44, 0.08);
+}

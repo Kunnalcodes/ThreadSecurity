@@ -1,0 +1,6 @@
+.theme-data-science {
+    --course-accent: #39ff14;
+    --course-accent-rgb: 57, 255, 20;
+    --course-accent-glow: rgba(57, 255, 20, 0.25);
+    --course-accent-subtle: rgba(57, 255, 20, 0.08);
+}

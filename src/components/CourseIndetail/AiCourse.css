@@ -1,0 +1,6 @@
+.theme-ai-course {
+    --course-accent: #ffd700;
+    --course-accent-rgb: 255, 215, 0;
+    --course-accent-glow: rgba(255, 215, 0, 0.25);
+    --course-accent-subtle: rgba(255, 215, 0, 0.08);
+}

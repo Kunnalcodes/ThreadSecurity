@@ -12,30 +12,30 @@ const coursesDropdown = [
     {
         category: 'Cyber Security',
         items: [
-            { label: 'Ethical Hacking', trending: true },
-            { label: 'Penetration Testing' },
-            { label: 'Red Teaming' },
-            { label: 'Network Security' },
-            { label: 'Cloud Security' },
+            { label: 'Ethical Hacking', trending: true, path: '/course/ethical-hacking' },
+            { label: 'Penetration Testing', path: '/course/penetration-testing' },
+            { label: 'Red Teaming', path: '/course/red-teaming' },
+            { label: 'Network Security', path: '/course/network-security' },
+            { label: 'Cloud Security', path: '/course/cloud-security' },
         ],
     },
     {
         category: 'Programming',
         items: [
-            { label: 'Python for Security', trending: true },
-            { label: 'C / C++' },
-            { label: 'Web Development' },
-            { label: 'MERN Stack' },
-            { label: 'Kotlin' },
+            { label: 'Python for Security', trending: true, path: '/course/python-for-security' },
+            { label: 'C / C++', path: '/course/c-cpp' },
+            { label: 'Web Development', path: '/course/web-development' },
+            { label: 'MERN Stack', path: '/course/mern-stack' },
+            { label: 'Kotlin', path: '/course/kotlin' },
         ],
     },
     {
         category: 'AI & Data',
         items: [
-            { label: 'Machine Learning' },
-            { label: 'Data Science', trending: true },
-            { label: 'Deep Learning' },
-            { label: 'AI Course' },
+            { label: 'Machine Learning', path: '/course/machine-learning' },
+            { label: 'Data Science', trending: true, path: '/course/data-science' },
+            { label: 'Deep Learning', path: '/course/deep-learning' },
+            { label: 'AI Course', path: '/course/ai-course' },
         ],
     },
 
@@ -141,10 +141,10 @@ function Navbar() {
                                         <ul className="nav-mega__list">
                                             {col.items.map((item) => (
                                                 <li key={item.label} className="nav-mega__item">
-                                                    <a href="#" className="nav-mega__link">
+                                                    <Link to={item.path} className="nav-mega__link">
                                                         {item.label}
                                                         {item.trending && <span className="nav-mega__badge">Trending</span>}
-                                                    </a>
+                                                    </Link>
                                                 </li>
                                             ))}
                                         </ul>
@@ -240,10 +240,10 @@ function Navbar() {
                                 <div key={col.category} className="mobile-accordion__group">
                                     <h5 className="mobile-accordion__heading">{col.category}</h5>
                                     {col.items.map((item) => (
-                                        <a key={item.label} href="#" className="mobile-accordion__link" onClick={closeMobile}>
+                                        <Link key={item.label} to={item.path} className="mobile-accordion__link" onClick={closeMobile}>
                                             {item.label}
                                             {item.trending && <span className="nav-mega__badge">Trending</span>}
-                                        </a>
+                                        </Link>
                                     ))}
                                 </div>
                             ))}

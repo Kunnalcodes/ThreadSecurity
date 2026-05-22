@@ -1,0 +1,6 @@
+.theme-python-for-security {
+    --course-accent: #00ffd2;
+    --course-accent-rgb: 0, 255, 210;
+    --course-accent-glow: rgba(0, 255, 210, 0.25);
+    --course-accent-subtle: rgba(0, 255, 210, 0.08);
+}

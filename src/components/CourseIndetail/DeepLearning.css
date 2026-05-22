@@ -1,0 +1,6 @@
+.theme-deep-learning {
+    --course-accent: #8a2be2;
+    --course-accent-rgb: 138, 43, 226;
+    --course-accent-glow: rgba(138, 43, 226, 0.25);
+    --course-accent-subtle: rgba(138, 43, 226, 0.08);
+}

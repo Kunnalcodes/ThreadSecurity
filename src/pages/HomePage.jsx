@@ -24,7 +24,7 @@ function HomePage() {
     return (
         <>
             <Navbar />
-            <FullPageScroll>
+            
                 <HeroSection />
                 {/* <CertifiedExcellence />
                 <TrustSignals /> */}
@@ -47,7 +47,7 @@ function HomePage() {
                     <Enquiry />
                     <Footer />
                 </div>
-            </FullPageScroll>
+           
         </>
     );
 }

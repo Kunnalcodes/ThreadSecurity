@@ -1,0 +1,6 @@
+.theme-penetration-testing {
+    --course-accent: #00d2ff;
+    --course-accent-rgb: 0, 210, 255;
+    --course-accent-glow: rgba(0, 210, 255, 0.25);
+    --course-accent-subtle: rgba(0, 210, 255, 0.08);
+}

@@ -1,0 +1,6 @@
+.theme-kotlin {
+    --course-accent: #7f52ff;
+    --course-accent-rgb: 127, 82, 255;
+    --course-accent-glow: rgba(127, 82, 255, 0.25);
+    --course-accent-subtle: rgba(127, 82, 255, 0.08);
+}

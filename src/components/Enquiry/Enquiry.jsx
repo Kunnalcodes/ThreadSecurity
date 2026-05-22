@@ -26,16 +26,35 @@ function Enquiry() {
         setStatus('sending');
         setErrorMessage('');
 
+        const webhookUrl = import.meta.env.VITE_N8N_WEBHOOK_URL;
+
+        if (!webhookUrl) {
+            setStatus('error');
+            setErrorMessage('Enquiry automation webhook is not configured. Please contact the administrator.');
+            setTimeout(() => setStatus('idle'), 5000);
+            return;
+        }
+
         try {
-            const response = await fetch('/api/enquiries', {
+            const response = await fetch(webhookUrl, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify(form),
+                body: JSON.stringify({
+                    ...form,
+                    submittedAt: new Date().toISOString()
+                }),
             });
 
-            const data = await readResponseJson(response);
+            // n8n webhooks can return either JSON or raw plain text (e.g. "Workflow started")
+            let data = {};
+            const text = await response.text();
+            try {
+                data = text ? JSON.parse(text) : {};
+            } catch {
+                data = { message: text };
+            }
 
             if (response.ok) {
                 setStatus('sent');
@@ -44,14 +63,14 @@ function Enquiry() {
             } else {
                 setStatus('error');
                 const fallback = response.status === 429
-                    ? userFacingHttpMessage(429, data)
+                    ? 'Too many requests. Please try again later.'
                     : (data.message || 'Submission failed. Please try again.');
                 setErrorMessage(fallback);
                 setTimeout(() => setStatus('idle'), 5000);
             }
         } catch (error) {
             setStatus('error');
-            setErrorMessage('Network error. Is the server running?');
+            setErrorMessage('Network connection error. Please verify your internet connection.');
             setTimeout(() => setStatus('idle'), 5000);
         }
     };

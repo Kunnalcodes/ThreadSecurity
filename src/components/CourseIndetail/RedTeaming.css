@@ -1,0 +1,6 @@
+.theme-red-teaming {
+    --course-accent: #ff3838;
+    --course-accent-rgb: 255, 56, 56;
+    --course-accent-glow: rgba(255, 56, 56, 0.25);
+    --course-accent-subtle: rgba(255, 56, 56, 0.08);
+}

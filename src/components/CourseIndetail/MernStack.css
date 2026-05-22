@@ -1,0 +1,6 @@
+.theme-mern-stack {
+    --course-accent: #bc34fa;
+    --course-accent-rgb: 188, 52, 250;
+    --course-accent-glow: rgba(188, 52, 250, 0.25);
+    --course-accent-subtle: rgba(188, 52, 250, 0.08);
+}
