@@ -1,8 +1,10 @@
 import { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { variants } from '../AnimatedSection/AnimatedSection';
-import hofVideo from '../../assets/floatingline-HOF.webm';
+import { getAssetUrl } from '../../config/assets.js';
 import './HallOfFame.css';
+
+const hofVideo = getAssetUrl('floatingline-HOF.webm');
 
 const insights = [
     {

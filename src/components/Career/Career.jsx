@@ -1,8 +1,10 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { variants, staggerContainer } from '../AnimatedSection/AnimatedSection';
-import roadmapPdf from '../../assets/Roadmap.pdf';
+import { getAssetUrl } from '../../config/assets.js';
 import './Career.css';
+
+const roadmapPdf = getAssetUrl('Roadmap.pdf');
 
 const careers = [
     { role: 'Certified Ethical Hacker', track: 'OFFENSIVE TRACK', salary: 'Avg. $120k – $180k / yr', avgPay: 'Avg $150k/yr', demand: 92, color: 'red', skills: ['Metasploit', 'Burp Suite', 'Active Directory', 'Python'], desc: 'Legally break into enterprise systems to identify vulnerabilities before attackers do. Simulate real-world attacks using industry toolkits like Metasploit, Burp Suite, and custom exploits.', docs: roadmapPdf },

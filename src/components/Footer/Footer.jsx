@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
-import brandLogo from '../../assets/Thread_Security_Logo-1--01 (1).png';
+import { getAssetUrl } from '../../config/assets.js';
 import './Footer.css';
+
+const brandLogo = getAssetUrl('Thread_Security_Logo-1--01 (1).png');
 
 function Footer() {
     return (

@@ -2,8 +2,10 @@ import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronRight, ChevronLeft, Shield, Terminal, Zap, Code, Target, Crosshair, Briefcase, FileCode } from 'lucide-react';
 import './MentorSection.css';
-import eventImg1 from '../../assets/hackviet__hackathon2026__techfest__codinglife__co.jpg.jpeg';
-import eventImg2 from '../../assets/threadsecurity__cybersecurity__blockchain__hackat.jpg.jpeg';
+import { getAssetUrl } from '../../config/assets.js';
+
+const eventImg1 = getAssetUrl('hackviet__hackathon2026__techfest__codinglife__co.jpg.jpeg');
+const eventImg2 = getAssetUrl('threadsecurity__cybersecurity__blockchain__hackat.jpg.jpeg');
 
 const mentors = [
     {

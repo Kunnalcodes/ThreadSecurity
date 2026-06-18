@@ -25,8 +25,38 @@ import MachineLearning from './components/CourseIndetail/MachineLearning';
 import DataScience from './components/CourseIndetail/DataScience';
 import DeepLearning from './components/CourseIndetail/DeepLearning';
 import AiCourse from './components/CourseIndetail/AiCourse';
+import { useEffect } from 'react';
+import { getAssetUrl } from './config/assets';
 
 function App() {
+  useEffect(() => {
+    const brandLogo = getAssetUrl('Thread_Security_Logo-1--01 (1).png');
+    const favicon2 = getAssetUrl('Favicon2.png');
+
+    const link = document.getElementById('favicon');
+    if (!link) return;
+
+    // Set initial favicon to brand logo
+    link.href = brandLogo;
+
+    // Preload favicon images
+    [brandLogo, favicon2].forEach(src => {
+      const img = new Image();
+      img.src = src;
+    });
+
+    // Alternate favicons every 5 seconds
+    const favicons = [brandLogo, favicon2];
+    let current = 0;
+
+    const interval = setInterval(() => {
+      current = (current + 1) % favicons.length;
+      link.href = favicons[current];
+    }, 5000);
+
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <ThemeProvider>
       <AuthProvider>

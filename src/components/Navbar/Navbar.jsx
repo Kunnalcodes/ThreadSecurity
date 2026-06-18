@@ -3,8 +3,10 @@ import { Menu, X, ChevronDown, User, LogOut, ShieldCheck } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useTheme } from '../../context/ThemeContext';
 import { useAuth } from '../../context/AuthContext';
-import brandLogo from '../../assets/Thread_Security_Logo-1--01 (1).png';
+import { getAssetUrl } from '../../config/assets.js';
 import './Navbar.css';
+
+const brandLogo = getAssetUrl('Thread_Security_Logo-1--01 (1).png');
 
 
 /* ── Dropdown data ── */

@@ -1,8 +1,10 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { variants, staggerContainer, SectionHeader } from '../AnimatedSection/AnimatedSection';
-import bgVideo from '../../assets/methodlogy-pixel.webm';
+import { getAssetUrl } from '../../config/assets.js';
 import './Methodology.css';
+
+const bgVideo = getAssetUrl('methodlogy-pixel.webm');
 
 const stages = [
     {

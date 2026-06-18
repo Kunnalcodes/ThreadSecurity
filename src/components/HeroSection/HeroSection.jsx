@@ -1,7 +1,9 @@
 import { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import threadVideo from '../../assets/Thread_Logo.mp4';
+import { getAssetUrl } from '../../config/assets.js';
 import './HeroSection.css';
+
+const threadVideo = getAssetUrl('Thread_Logo.mp4');
 import { useNavigate } from 'react-router-dom';
 
 
@@ -208,7 +210,7 @@ export default function HeroSection() {
       <div className="nav-bar">
         <div className="nav-logo">
           <span className="logo-bracket">[</span>
-          <span className="logo-text">CYPHER<span className="logo-accent">SEC</span></span>
+          <span className="logo-text"><span className="logo-accent">SEC</span></span>
           <span className="logo-bracket">]</span>
         </div>
         <div className="nav-status">

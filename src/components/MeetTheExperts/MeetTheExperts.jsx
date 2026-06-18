@@ -2,14 +2,16 @@ import { useEffect, useRef, useState } from 'react';
 import { motion } from 'framer-motion';
 import { variants } from '../AnimatedSection/AnimatedSection';
 import { ChevronLeft, ChevronRight, User } from 'lucide-react';
-import bgVideo from '../../assets/methodlogy-pixel.webm';
+import { getAssetUrl } from '../../config/assets.js';
 import './MeetTheExperts.css';
+
+const bgVideo = getAssetUrl('methodlogy-pixel.webm');
 
 const experts = [
     {
         name: "Vishal Kumar",
         role: "Founder & CEO",
-        avatar: "/assets/avatars/CEO.jpeg",
+        avatar: getAssetUrl('CEO.jpeg'),
         link: "https://share.google/KP5nK4H0RXjyPspQL",
         vision: "Security education must be forged in the heat of real attacks, not built on slides. I founded Thread Security to close the gap between classroom theory and the front lines of modern cyber warfare.",
         trajectory: "We don’t just teach cybersecurity  we train students to perform in the real world. At Thread Security, our focus is on hands on bug bounty and practical security skills. This is what happens when learning goes beyond theory.",
@@ -21,7 +23,7 @@ const experts = [
     {
         name: "Sujal Tiwari",
         role: "Chief Technology Officer",
-        avatar: "/assets/avatars/CTO.jpeg",
+        avatar: getAssetUrl('CTO.jpeg'),
         link: "https://www.linkedin.com/in/-sujaltiwari",
         vision: "Exploit research is an art form. My goal at Thread Security is to teach students to see systems the way attackers do — so defenders can always be one step ahead.",
         trajectory: "Published CVE researcher • 10+ yrs in zero-day discovery & exploit automation • Designed offensive CTF infra used by global security conferences.",

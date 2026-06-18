@@ -2,9 +2,11 @@ import { useRef, useEffect, useState } from 'react';
 import { Users } from 'lucide-react';
 import './CourseInstructors.css';
 
-// Import Images
-import CTOimg from '../../assets/CTO.jpeg';
-import CEOimg from '../../assets/CEO.jpeg';
+// Import Images using getAssetUrl
+import { getAssetUrl } from '../../config/assets.js';
+
+const CTOimg = getAssetUrl('CTO.jpeg');
+const CEOimg = getAssetUrl('CEO.jpeg');
 
 
 const INSTRUCTORS = [
