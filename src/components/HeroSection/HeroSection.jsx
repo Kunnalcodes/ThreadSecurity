@@ -2,7 +2,6 @@ import { useRef, useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { getAssetUrl } from '../../config/assets.js';
 import './HeroSection.css';
-
 const threadVideo = getAssetUrl('Thread_Logo.mp4');
 import { useNavigate } from 'react-router-dom';
 

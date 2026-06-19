@@ -1,5 +1,6 @@
 import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
+import { Cpu, FlaskConical, Crosshair, FileText, Sliders } from 'lucide-react';
 import { variants, staggerContainer, SectionHeader } from '../AnimatedSection/AnimatedSection';
 import { getAssetUrl } from '../../config/assets.js';
 import './Methodology.css';
@@ -12,30 +13,35 @@ const stages = [
         title: 'Cyber-AI Core Foundations',
         description: 'Master foundational cybersecurity principles alongside machine learning and neural network architectures.',
         short: 'Security & ML fundamentals.',
+        icon: Cpu,
     },
     {
         num: 2,
         title: 'Automated Lab Implementation',
         description: 'Build intelligent threat models and train custom defensive AI agents in cloud-based sandboxes.',
         short: 'Building AI defense models.',
+        icon: FlaskConical,
     },
     {
         num: 3,
         title: 'Intelligent Exploitation',
         description: 'Execute AI-assisted red-teaming, prompt injection, and adversarial machine learning attacks.',
         short: 'Adversarial AI & Pentesting.',
+        icon: Crosshair,
     },
     {
         num: 4,
         title: 'AI-Enhanced Reporting',
         description: 'Utilize customized LLMs to generate industry-standard vulnerability assessments and threat intel.',
         short: 'Generative AI for reporting.',
+        icon: FileText,
     },
     {
         num: 5,
         title: 'Iterative Model Tuning',
         description: 'Refine your defense mechanisms through expert feedback and continuous AI model retraining.',
         short: 'Model optimization & review.',
+        icon: Sliders,
     },
 ];
 
@@ -79,9 +85,10 @@ function Methodology() {
                 {/* Header */}
                 <SectionHeader 
                     className="methodology-header active"
-                    title="Our 5-Stage Learning"
-                    titleAccent="Methodology"
-                    subtitle="A systematic, industry-aligned approach blending offensive cybersecurity with cutting-edge AI software development."
+                    eyebrow="Pedagogical Blueprint"
+                    title="5 Stages of Cyber-AI"
+                    titleAccent="Mastery"
+                    subtitle="A highly structured, hands-on framework blending offensive cybersecurity tactics with state-of-the-art AI engineering."
                 />
 
                 {/* Desktop Timeline */}
@@ -105,7 +112,10 @@ function Methodology() {
                                 transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
                             >
                                 <div className="methodology-card">
-                                    <div className="stage-number">{s.num}</div>
+                                    <div className="stage-icon-container">
+                                        <s.icon className="stage-icon" size={24} />
+                                    </div>
+                                    <div className="stage-num-pill">STAGE 0{s.num}</div>
                                     <h3 className="stage-title">{s.title}</h3>
                                     <p className="stage-desc">{s.description}</p>
                                 </div>
@@ -129,8 +139,11 @@ function Methodology() {
                             variants={variants.slideRight}
                             transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
                         >
-                            <span className="mobile-num">0{s.num}</span>
-                            <div>
+                            <div className="mobile-icon-container">
+                                <s.icon className="mobile-stage-icon" size={22} />
+                                <span className="mobile-stage-num">0{s.num}</span>
+                            </div>
+                            <div className="mobile-stage-text">
                                 <h3 className="stage-title">{s.title}</h3>
                                 <p className="stage-desc">{s.short}</p>
                             </div>

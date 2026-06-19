@@ -18,23 +18,37 @@
     margin-bottom: var(--space-72);
 }
 
-.methodology-header .headline {
-    text-transform: uppercase;
-    font-family: var(--font-display);
-    font-weight: 900;
-    font-size: 1.25rem;
-    letter-spacing: -0.02em;
-    color: var(--text-primary);
-    white-space: nowrap;
-    margin-bottom: var(--space-24);
-}
-
-.methodology-title .accent {
+.methodology-header .eyebrow {
     color: var(--accent);
+    display: block;
+    font-family: var(--font-display);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: var(--space-16);
 }
 
-.methodology-subtitle {
-    max-width: 640px;
+.methodology-header .headline {
+    font-family: var(--font-display);
+    font-size: clamp(1.8rem, 4.5vw, 3rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: var(--text-primary);
+    margin-bottom: var(--space-20);
+}
+
+.methodology-header .accent {
+    background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    display: inline-block;
+}
+
+.methodology-header .subheadline {
+    max-width: 680px;
     margin: 0 auto;
     font-size: 1.05rem;
     color: var(--text-secondary);
@@ -89,52 +103,131 @@
 
 /* Card */
 .methodology-card {
-    background: var(--bg-card);
+    background: linear-gradient(180deg, rgba(42, 42, 42, 0.45) 0%, rgba(26, 26, 26, 0.7) 100%);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     padding: var(--space-32);
-    border-radius: 12px;
+    border-radius: 16px;
     border: 1px solid var(--border);
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
     height: 100%;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+/* cyber top indicator light */
+.methodology-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 32px;
+    height: 3px;
+    background: var(--accent);
+    border-radius: 0 0 4px 4px;
+    box-shadow: 0 0 10px var(--accent);
+    opacity: 0.25;
+    transition: width 0.35s ease, opacity 0.35s ease;
+    z-index: 10;
+}
+
+/* cyber radial light reflection */
+.methodology-card::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at top right, rgba(93, 214, 44, 0.08) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+    pointer-events: none;
+    z-index: 1;
 }
 
 .methodology-card:hover {
-    border-color: var(--accent);
-    box-shadow: var(--shadow-accent);
-    transform: translateY(-8px);
+    border-color: rgba(93, 214, 44, 0.35);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55), 0 0 30px var(--accent-glow);
+    transform: translateY(-12px) scale(1.02);
+    background: linear-gradient(180deg, rgba(50, 50, 50, 0.6) 0%, rgba(26, 26, 26, 0.85) 100%);
 }
 
-.stage-number {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    background: var(--accent);
-    color: #fff;
+.methodology-card:hover::before {
+    width: 72px;
+    opacity: 1;
+}
+
+.methodology-card:hover::after {
+    opacity: 1;
+}
+
+.stage-icon-container {
+    width: 54px;
+    height: 54px;
+    border-radius: 16px;
+    background: var(--accent-subtle);
+    border: 1px solid rgba(93, 214, 44, 0.25);
+    color: var(--accent);
     display: flex;
     align-items: center;
     justify-content: center;
+    margin-bottom: var(--space-20);
+    box-shadow: 0 4px 20px rgba(93, 214, 44, 0.12);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.methodology-card:hover .stage-icon-container {
+    background: var(--accent);
+    color: #000;
+    box-shadow: 0 8px 24px var(--accent-glow);
+    transform: scale(1.05);
+}
+
+.stage-num-pill {
     font-family: var(--font-display);
-    font-weight: 600;
-    font-size: 1rem;
-    margin-bottom: var(--space-24);
-    box-shadow: 0 4px 16px var(--accent-glow);
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--accent);
+    background: rgba(93, 214, 44, 0.08);
+    border: 1px solid rgba(93, 214, 44, 0.2);
+    padding: 4px 12px;
+    border-radius: 50px;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--space-16);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.methodology-card:hover .stage-num-pill {
+    background: var(--accent-subtle);
+    border-color: rgba(93, 214, 44, 0.4);
 }
 
 .stage-title {
     font-family: var(--font-display);
-    font-size: 0.8rem;
-    font-weight: 600;
+    font-size: 0.95rem;
+    font-weight: 700;
     color: var(--text-primary);
     margin-bottom: var(--space-16);
+    line-height: 1.35;
+    transition: color 0.3s ease;
+}
+
+.methodology-card:hover .stage-title {
+    color: var(--accent);
 }
 
 .stage-desc {
     font-size: 0.85rem;
     color: var(--text-secondary);
-    line-height: 1.65;
+    line-height: 1.6;
+    transition: color 0.3s ease;
+}
+
+.methodology-card:hover .stage-desc {
+    color: var(--text-primary);
 }
 
 /* Reveal animation */
@@ -153,24 +246,98 @@
 .methodology-mobile {
     display: flex;
     flex-direction: column;
-    gap: var(--space-32);
+    gap: var(--space-20);
     margin-bottom: var(--space-72);
 }
 
 .mobile-stage {
     display: flex;
-    gap: var(--space-16);
+    gap: var(--space-20);
     padding: var(--space-24);
     border: 1px solid var(--border);
-    border-radius: 12px;
-    background: var(--bg-card);
+    border-left: 4px solid var(--border);
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(42, 42, 42, 0.4) 0%, rgba(30, 30, 30, 0.6) 100%);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    overflow: hidden;
 }
 
-.mobile-num {
-    font-family: var(--font-display);
-    color: var(--accent);
-    font-weight: 600;
+.mobile-stage:hover {
+    border-color: rgba(93, 214, 44, 0.3);
+    border-left-color: var(--accent);
+    box-shadow: 0 8px 32px var(--accent-glow);
+    transform: translateY(-3px) scale(1.01);
+    background: linear-gradient(135deg, rgba(50, 50, 50, 0.6) 0%, rgba(35, 35, 35, 0.8) 100%);
+}
+
+.mobile-stage.active {
+    border-left-color: var(--accent);
+}
+
+.mobile-icon-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-8);
     flex-shrink: 0;
+}
+
+.mobile-stage-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: var(--accent-subtle);
+    border: 1px solid rgba(93, 214, 44, 0.25);
+    color: var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    box-shadow: 0 4px 12px rgba(93, 214, 44, 0.08);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.mobile-stage:hover .mobile-stage-icon {
+    background: var(--accent);
+    color: #000;
+    box-shadow: 0 6px 20px var(--accent-glow);
+    transform: scale(1.05);
+}
+
+.mobile-stage-num {
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    transition: color 0.3s ease;
+}
+
+.mobile-stage:hover .mobile-stage-num {
+    color: var(--accent);
+}
+
+.mobile-stage-text {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.mobile-stage .stage-title {
+    font-family: var(--font-display);
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: var(--space-8);
+}
+
+.mobile-stage .stage-desc {
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
 }
 
 /* CTA */
