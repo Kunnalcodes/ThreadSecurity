@@ -55,239 +55,159 @@
     line-height: 1.7;
 }
 
-/* Desktop Timeline */
-.methodology-timeline {
-    position: relative;
-    margin-bottom: var(--space-96);
-}
-
-.desktop-only { display: none; }
-
-@media (min-width: 1024px) {
-    .desktop-only { display: block; }
-    .mobile-only { display: none; }
-}
-
-/* Progress Lines */
-.progress-line-bg {
+/* 3D Stack Sliding Cards */
+.methodology-video-bg {
     position: absolute;
-    top: 50%;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: var(--border);
-    transform: translateY(-50%);
+    inset: 0;
     z-index: 0;
+    opacity: 0.15;
+    background-color: #000;
 }
 
-.progress-line-fill {
-    position: absolute;
-    top: 50%;
-    left: 0;
-    width: 0%;
-    height: 4px;
-    background: var(--accent);
-    transform: translateY(-50%);
-    z-index: 1;
-    transition: width 0.8s ease-out;
+.methodology-video-bg video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    pointer-events: none;
 }
 
-/* Stages Grid */
-.stages-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: var(--space-24);
+.methodology-stack-wrapper {
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: var(--space-48) auto var(--space-24) auto;
+    max-width: 720px;
+    width: 100%;
+    padding: var(--space-24) var(--space-16);
     z-index: 10;
 }
 
-/* Card */
-.methodology-card {
-    background: linear-gradient(180deg, rgba(42, 42, 42, 0.45) 0%, rgba(26, 26, 26, 0.7) 100%);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    padding: var(--space-32);
-    border-radius: 16px;
-    border: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    height: 100%;
+.methodology-cards-stack {
     position: relative;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    width: 460px;
+    height: 300px;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    margin: 0 auto;
 }
 
-/* cyber top indicator light */
-.methodology-card::before {
+@media (max-width: 600px) {
+    .methodology-cards-stack {
+        width: 290px;
+        height: 275px;
+    }
+}
+
+.methodology-3d-card {
+    position: absolute;
+    inset: 0;
+    border-radius: 20px;
+    background: linear-gradient(135deg, rgba(30, 30, 30, 0.85) 0%, rgba(15, 15, 15, 0.96) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(248, 248, 248, 0.08);
+    padding: var(--space-32);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: flex-start;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    transform-style: preserve-3d;
+    user-select: none;
+    touch-action: none;
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                opacity 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                border-color 0.3s ease, 
+                box-shadow 0.3s ease;
+}
+
+@media (max-width: 600px) {
+    .methodology-3d-card {
+        padding: var(--space-20);
+    }
+}
+
+/* Neon Top Glow Strip */
+.methodology-3d-card::before {
     content: '';
     position: absolute;
     top: 0;
     left: 50%;
     transform: translateX(-50%);
-    width: 32px;
+    width: 40px;
     height: 3px;
     background: var(--accent);
     border-radius: 0 0 4px 4px;
     box-shadow: 0 0 10px var(--accent);
     opacity: 0.25;
     transition: width 0.35s ease, opacity 0.35s ease;
-    z-index: 10;
+    z-index: 2;
 }
 
-/* cyber radial light reflection */
-.methodology-card::after {
+.methodology-3d-card.active-card:hover::before {
+    width: 100px;
+    opacity: 1;
+}
+
+/* Cyber Matrix Grid Overlay */
+.methodology-3d-card::after {
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(circle at top right, rgba(93, 214, 44, 0.08) 0%, transparent 60%);
-    opacity: 0;
-    transition: opacity 0.4s ease;
+    border-radius: 19px;
+    background-image: 
+        linear-gradient(rgba(248, 248, 248, 0.012) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(248, 248, 248, 0.012) 1px, transparent 1px);
+    background-size: 20px 20px;
     pointer-events: none;
-    z-index: 1;
+    z-index: 0;
+    opacity: 0.8;
 }
 
-.methodology-card:hover {
-    border-color: rgba(93, 214, 44, 0.35);
-    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.55), 0 0 30px var(--accent-glow);
-    transform: translateY(-12px) scale(1.02);
-    background: linear-gradient(180deg, rgba(50, 50, 50, 0.6) 0%, rgba(26, 26, 26, 0.85) 100%);
+/* Interactive Spotlight Glow for Active Card */
+.methodology-3d-card.active-card {
+    border-color: rgba(248, 248, 248, 0.15);
+    cursor: grab;
+    background-image: 
+        radial-gradient(circle 200px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(93, 214, 44, 0.12), transparent 100%),
+        linear-gradient(135deg, rgba(30, 30, 30, 0.85) 0%, rgba(15, 15, 15, 0.96) 100%);
 }
 
-.methodology-card:hover::before {
-    width: 72px;
-    opacity: 1;
+.methodology-3d-card.active-card:hover {
+    border-color: rgba(93, 214, 44, 0.45);
+    box-shadow: 0 20px 45px rgba(0, 0, 0, 0.6), 0 0 30px var(--accent-glow);
 }
 
-.methodology-card:hover::after {
-    opacity: 1;
-}
-
-.stage-icon-container {
-    width: 54px;
-    height: 54px;
-    border-radius: 16px;
-    background: var(--accent-subtle);
-    border: 1px solid rgba(93, 214, 44, 0.25);
-    color: var(--accent);
+.card-top {
     display: flex;
+    justify-content: space-between;
     align-items: center;
-    justify-content: center;
-    margin-bottom: var(--space-20);
-    box-shadow: 0 4px 20px rgba(93, 214, 44, 0.12);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+    z-index: 2;
 }
 
-.methodology-card:hover .stage-icon-container {
-    background: var(--accent);
-    color: #000;
-    box-shadow: 0 8px 24px var(--accent-glow);
-    transform: scale(1.05);
-}
-
-.stage-num-pill {
+.card-stage-pill {
     font-family: var(--font-display);
     font-size: 0.65rem;
     font-weight: 700;
     color: var(--accent);
     background: rgba(93, 214, 44, 0.08);
     border: 1px solid rgba(93, 214, 44, 0.2);
-    padding: 4px 12px;
+    padding: 5px 12px;
     border-radius: 50px;
     letter-spacing: 0.1em;
-    margin-bottom: var(--space-16);
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: all 0.3s ease;
 }
 
-.methodology-card:hover .stage-num-pill {
+.methodology-3d-card.active-card:hover .card-stage-pill {
     background: var(--accent-subtle);
     border-color: rgba(93, 214, 44, 0.4);
 }
 
-.stage-title {
-    font-family: var(--font-display);
-    font-size: 0.95rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: var(--space-16);
-    line-height: 1.35;
-    transition: color 0.3s ease;
-}
-
-.methodology-card:hover .stage-title {
-    color: var(--accent);
-}
-
-.stage-desc {
-    font-size: 0.85rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    transition: color 0.3s ease;
-}
-
-.methodology-card:hover .stage-desc {
-    color: var(--text-primary);
-}
-
-/* Reveal animation */
-.reveal-item {
-    opacity: 0;
-    transform: translateY(30px);
-    transition: all 0.6s ease-out;
-}
-
-.reveal-item.active {
-    opacity: 1;
-    transform: translateY(0);
-}
-
-/* Mobile Stack */
-.methodology-mobile {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-20);
-    margin-bottom: var(--space-72);
-}
-
-.mobile-stage {
-    display: flex;
-    gap: var(--space-20);
-    padding: var(--space-24);
-    border: 1px solid var(--border);
-    border-left: 4px solid var(--border);
-    border-radius: 16px;
-    background: linear-gradient(135deg, rgba(42, 42, 42, 0.4) 0%, rgba(30, 30, 30, 0.6) 100%);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    transition: all 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
-    position: relative;
-    overflow: hidden;
-}
-
-.mobile-stage:hover {
-    border-color: rgba(93, 214, 44, 0.3);
-    border-left-color: var(--accent);
-    box-shadow: 0 8px 32px var(--accent-glow);
-    transform: translateY(-3px) scale(1.01);
-    background: linear-gradient(135deg, rgba(50, 50, 50, 0.6) 0%, rgba(35, 35, 35, 0.8) 100%);
-}
-
-.mobile-stage.active {
-    border-left-color: var(--accent);
-}
-
-.mobile-icon-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: var(--space-8);
-    flex-shrink: 0;
-}
-
-.mobile-stage-icon {
-    width: 44px;
-    height: 44px;
+.card-icon-wrapper {
+    width: 46px;
+    height: 46px;
     border-radius: 12px;
     background: var(--accent-subtle);
     border: 1px solid rgba(93, 214, 44, 0.25);
@@ -295,50 +215,137 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 10px;
-    box-shadow: 0 4px 12px rgba(93, 214, 44, 0.08);
+    box-shadow: 0 4px 15px rgba(93, 214, 44, 0.1);
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.mobile-stage:hover .mobile-stage-icon {
+.methodology-3d-card.active-card:hover .card-icon-wrapper {
     background: var(--accent);
     color: #000;
-    box-shadow: 0 6px 20px var(--accent-glow);
-    transform: scale(1.05);
+    box-shadow: 0 8px 24px var(--accent-glow);
+    transform: scale(1.08) translateZ(15px);
 }
 
-.mobile-stage-num {
+.card-title {
     font-family: var(--font-display);
-    font-size: 0.65rem;
+    font-size: 1.1rem;
     font-weight: 700;
-    color: var(--text-muted);
-    letter-spacing: 0.05em;
+    color: var(--text-primary);
+    margin-top: var(--space-32);
+    margin-bottom: var(--space-12);
+    line-height: 1.35;
     transition: color 0.3s ease;
+    z-index: 2;
 }
 
-.mobile-stage:hover .mobile-stage-num {
+.methodology-3d-card.active-card:hover .card-title {
     color: var(--accent);
 }
 
-.mobile-stage-text {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
-.mobile-stage .stage-title {
-    font-family: var(--font-display);
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: var(--text-primary);
-    margin-bottom: var(--space-8);
-}
-
-.mobile-stage .stage-desc {
-    font-size: 0.9rem;
+.card-desc {
+    font-size: 0.85rem;
     color: var(--text-secondary);
     line-height: 1.6;
+    transition: color 0.3s ease;
+    z-index: 2;
 }
+
+.methodology-3d-card.active-card:hover .card-desc {
+    color: var(--text-primary);
+}
+
+@media (max-width: 600px) {
+    .card-title {
+        font-size: 0.95rem;
+        margin-top: var(--space-20);
+    }
+    .card-desc {
+        font-size: 0.8rem;
+    }
+}
+
+.card-swipe-hint {
+    margin-top: auto;
+    display: flex;
+    align-items: center;
+    gap: var(--space-8);
+    font-size: 0.7rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    animation: pulseHint 2.5s infinite ease-in-out;
+    z-index: 2;
+}
+
+.swipe-arrow-indicator {
+    color: var(--accent);
+    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+@keyframes pulseHint {
+    0%, 100% { opacity: 0.5; transform: translateY(0); }
+    50% { opacity: 1; transform: translateY(-4px); }
+}
+
+/* Indicators dots */
+.methodology-indicators {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: var(--space-48);
+    margin-bottom: var(--space-48);
+    z-index: 10;
+    position: relative;
+}
+
+.indicator-dot {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--border);
+    height: 8px;
+    width: 32px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+}
+
+.indicator-dot.active {
+    background: var(--accent);
+    width: 48px;
+    box-shadow: 0 0 12px var(--accent-glow);
+}
+
+.indicator-dot:hover {
+    border-color: rgba(93, 214, 44, 0.4);
+    background: rgba(255, 255, 255, 0.25);
+}
+
+.indicator-dot.active:hover {
+    background: var(--accent);
+}
+
+.dot-label {
+    position: absolute;
+    top: -22px;
+    font-size: 0.65rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    color: var(--text-muted);
+    opacity: 0;
+    transition: opacity 0.3s ease, color 0.3s ease;
+    pointer-events: none;
+}
+
+.indicator-dot.active .dot-label,
+.indicator-dot:hover .dot-label {
+    opacity: 1;
+    color: var(--accent);
+}
+
 
 /* CTA */
 .methodology-cta {

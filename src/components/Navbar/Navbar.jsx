@@ -81,6 +81,18 @@ function Navbar() {
     const { user, isAuthenticated, logout } = useAuth();
     const navigate = useNavigate();
 
+    const [loginFilling, setLoginFilling] = useState(false);
+    const [registerFilling, setRegisterFilling] = useState(false);
+
+    const handleButtonClick = (e, path, setFillingState) => {
+        e.preventDefault();
+        setFillingState(true);
+        setTimeout(() => {
+            setFillingState(false);
+            navigate(path);
+        }, 600);
+    };
+
     async function handleLogout() {
         await logout();
         navigate('/', { replace: true });
@@ -207,8 +219,26 @@ function Navbar() {
                         </div>
                     ) : (
                         <>
-                            <Link to="/login" className="nav-btn-outline glare-hover">Login</Link>
-                            <Link to="/register" className="nav-btn-primary glare-hover">Sign Up</Link>
+                            <a 
+                                href="/login" 
+                                onClick={(e) => handleButtonClick(e, '/login', setLoginFilling)}
+                                className={`nav-btn-outline glare-hover ${loginFilling ? 'water-filling' : ''}`}
+                            >
+                                <span className="btn-text">Login</span>
+                                <span className={`btn-water-container ${loginFilling ? 'active' : ''}`}>
+                                    <span className="water-wave"></span>
+                                </span>
+                            </a>
+                            <a 
+                                href="/register" 
+                                onClick={(e) => handleButtonClick(e, '/register', setRegisterFilling)}
+                                className={`nav-btn-primary glare-hover ${registerFilling ? 'water-filling' : ''}`}
+                            >
+                                <span className="btn-text">Sign Up</span>
+                                <span className={`btn-water-container ${registerFilling ? 'active' : ''}`}>
+                                    <span className="water-wave"></span>
+                                </span>
+                            </a>
                         </>
                     )}
                 </nav>
@@ -291,8 +321,26 @@ function Navbar() {
                         </>
                     ) : (
                         <>
-                            <Link to="/login" className="mobile-nav-link mobile-nav-link--outline" onClick={closeMobile}>Login</Link>
-                            <Link to="/register" className="mobile-nav-btn glare-hover" onClick={closeMobile}>Sign Up</Link>
+                            <a 
+                                href="/login" 
+                                onClick={(e) => { closeMobile(); handleButtonClick(e, '/login', setLoginFilling); }}
+                                className={`mobile-nav-link mobile-nav-link--outline ${loginFilling ? 'water-filling' : ''}`}
+                            >
+                                <span className="btn-text">Login</span>
+                                <span className={`btn-water-container ${loginFilling ? 'active' : ''}`}>
+                                    <span className="water-wave"></span>
+                                </span>
+                            </a>
+                            <a 
+                                href="/register" 
+                                onClick={(e) => { closeMobile(); handleButtonClick(e, '/register', setRegisterFilling); }}
+                                className={`mobile-nav-btn glare-hover ${registerFilling ? 'water-filling' : ''}`}
+                            >
+                                <span className="btn-text">Sign Up</span>
+                                <span className={`btn-water-container ${registerFilling ? 'active' : ''}`}>
+                                    <span className="water-wave"></span>
+                                </span>
+                            </a>
                         </>
                     )}
                 </div>

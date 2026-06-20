@@ -99,14 +99,15 @@
     opacity: 1;
 }
 
-/* Grid & Cards */
+/* Grid & Cards Wrapper */
 .ps-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 1.5rem;
+    gap: 2rem;
+    margin-top: 3rem;
 }
 
-@media (min-width: 768px) {
+@media (min-width: 640px) {
     .ps-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
@@ -114,68 +115,290 @@
     .ps-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 }
 
-.ps-card {
-    background-color: var(--bg-card);
-    padding: 1.5rem;
-    border-radius: 1rem;
-    border: 1px solid var(--border);
-    box-shadow: var(--shadow-sm);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+.folder-wrapper {
     position: relative;
-    cursor: default;
-    overflow: hidden;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-}
-
-@keyframes fadeInUp {
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-.ps-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-lg);
-}
-
-/* Animated border top hover effect */
-.ps-card-hover-border {
-    position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, var(--accent), transparent);
-    transform: translateX(-100%);
-    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.ps-card:hover .ps-card-hover-border {
-    transform: translateX(100%);
+/* 3D Cyber Folder */
+.cyber-folder {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    background: transparent;
+    cursor: pointer;
+    perspective: 1000px;
+    margin-top: 16px; /* spacing for folder tab */
 }
 
-.ps-card-eyebrow {
-    color: var(--accent);
+/* Folder tab flap */
+.folder-tab {
+    position: absolute;
+    top: -16px;
+    left: 0;
+    height: 18px;
+    width: 120px;
+    background: #1e1e1e;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border: 1.5px solid rgba(248, 248, 248, 0.08);
+    border-bottom: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     font-family: var(--font-display);
-    font-size: 0.875rem;
+    font-size: 0.62rem;
     font-weight: 700;
-    letter-spacing: 0.05em;
-    margin-bottom: 1rem;
+    color: var(--accent);
+    z-index: 2;
+    transition: background 0.3s, color 0.3s;
 }
 
-.ps-card-title {
-    font-size: 1.125rem;
+.cyber-folder:hover .folder-tab {
+    color: var(--text-primary);
+    background: var(--accent);
+}
+
+/* Back body panel of the folder */
+.folder-body-back {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, #181818 0%, #0d0d0d 100%);
+    border: 1.5px solid rgba(248, 248, 248, 0.08);
+    border-radius: 12px;
+    border-top-left-radius: 0; /* flat top edge behind the tab */
+    z-index: 1;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+    overflow: hidden;
+}
+
+/* Wavy Preview Paper nested inside */
+.folder-paper-preview {
+    position: absolute;
+    top: 15px;
+    left: 16px;
+    right: 16px;
+    height: 130px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1.2px dashed rgba(255, 255, 255, 0.12);
+    border-radius: 8px;
+    padding: 16px;
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.preview-line {
+    height: 3px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.06);
+    border-radius: 2px;
+}
+
+.preview-line.short {
+    width: 60%;
+}
+
+.cyber-folder:hover .folder-paper-preview {
+    transform: translateY(-16px) rotate(2deg); /* peak upward on hover */
+}
+
+/* Front body panel cover of the folder */
+.folder-body-front {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(38, 38, 38, 0.85) 0%, rgba(20, 20, 20, 0.95) 100%);
+    border: 1.5px solid rgba(93, 214, 44, 0.2);
+    border-radius: 12px;
+    border-top-left-radius: 0;
+    z-index: 3;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    transition: transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), border-color 0.4s ease, box-shadow 0.4s ease;
+    transform-origin: bottom;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.35);
+}
+
+.cyber-folder:hover .folder-body-front {
+    transform: rotateX(-14deg); /* open cover */
+    border-color: var(--accent);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.65), 0 0 15px var(--accent-subtle);
+}
+
+.folder-title {
+    font-family: var(--font-display);
+    font-size: 1rem;
     font-weight: 700;
     color: var(--text-primary);
-    margin-bottom: 0.75rem;
+    line-height: 1.35;
+    margin-bottom: 8px;
+    transition: color 0.3s;
+}
+
+.cyber-folder:hover .folder-title {
+    color: var(--accent);
+}
+
+.folder-desc-short {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+}
+
+.folder-click-hint {
+    margin-top: auto;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+    transition: color 0.3s;
+}
+
+.cyber-folder:hover .folder-click-hint {
+    color: var(--text-primary);
+}
+
+/* ═══════════════════════════════════════════════════════════
+   PAPER OVERLAY DOCUMENT MODAL
+   ═══════════════════════════════════════════════════════════ */
+.paper-modal-overlay {
+    position: fixed;
+    inset: 0;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.paper-document-content {
+    position: relative;
+    background: #fcfcf7; /* Warm cream realistic paper color */
+    color: #151515;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 8px;
+    padding: 3rem 2.2rem var(--space-32);
+    box-shadow: 0 25px 60px rgba(0, 0, 0, 0.7), 
+                0 0 0 12px rgba(255, 255, 255, 0.04);
+    border: 1px solid #e2e2d5;
+}
+
+/* Ring binder hole punches on the side edge */
+.paper-document-content::before {
+    content: 'o     o     o     o';
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    writing-mode: vertical-rl;
+    font-size: 1.5rem;
+    letter-spacing: 1.3rem;
+    color: rgba(0, 0, 0, 0.06);
+    pointer-events: none;
+    font-family: monospace;
+}
+
+.paper-close-btn {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: rgba(0, 0, 0, 0.04);
+    border: none;
+    color: #555;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.25s ease;
+}
+
+.paper-close-btn:hover {
+    background: rgba(0, 0, 0, 0.08);
+    color: #000;
+    transform: rotate(90deg);
+}
+
+.paper-header {
+    margin-bottom: var(--space-20);
+    padding-left: 16px; /* align with margin */
+}
+
+.paper-week-badge {
+    font-family: var(--font-display);
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: var(--pal-green-dark); /* dark green theme on sheet */
+    background: rgba(93, 214, 44, 0.08);
+    border: 1px solid rgba(93, 214, 44, 0.2);
+    padding: 5px 12px;
+    border-radius: 4px;
+    letter-spacing: 0.05em;
+}
+
+.paper-title {
+    font-family: var(--font-display);
+    font-size: 1.25rem;
+    font-weight: 800;
+    color: #000000;
+    margin-top: 14px;
     line-height: 1.3;
 }
 
-.ps-card-desc {
-    font-size: 0.875rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
+.paper-divider {
+    height: 2px;
+    background: repeating-linear-gradient(to right, 
+        transparent, transparent 3px, 
+        #c3c3b5 3px, #c3c3b5 7px);
+    margin-bottom: var(--space-24);
+}
+
+.paper-details {
+    padding-left: 16px;
+}
+
+.paper-details h5 {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #666660;
+    margin-bottom: var(--space-16);
+}
+
+.paper-modules-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.paper-modules-list li {
+    position: relative;
+    padding-left: var(--space-24);
+    font-size: 0.86rem;
+    line-height: 1.55;
+    color: #222220;
+    font-weight: 550;
+}
+
+.paper-modules-list li::before {
+    content: '✓';
+    position: absolute;
+    left: 0;
+    color: #337413;
+    font-weight: bold;
 }
