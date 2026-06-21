@@ -1,21 +1,47 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
+import { useForm, ValidationError } from '@formspree/react';
 import { variants } from '../AnimatedSection/AnimatedSection';
-import { readResponseJson, userFacingHttpMessage } from '../../utils/httpError';
 import './Enquiry.css';
 
 function Enquiry() {
+    const [state, handleFormspreeSubmit] = useForm('mykqgjbw');
+
+    const INDIAN_STATES = [
+        'Andhra Pradesh', 'Arunachal Pradesh', 'Assam', 'Bihar', 'Chhattisgarh',
+        'Goa', 'Gujarat', 'Haryana', 'Himachal Pradesh', 'Jharkhand', 'Karnataka',
+        'Kerala', 'Madhya Pradesh', 'Maharashtra', 'Manipur', 'Meghalaya', 'Mizoram',
+        'Nagaland', 'Odisha', 'Punjab', 'Rajasthan', 'Sikkim', 'Tamil Nadu',
+        'Telangana', 'Tripura', 'Uttar Pradesh', 'Uttarakhand', 'West Bengal',
+        // Union Territories
+        'Andaman & Nicobar Islands', 'Chandigarh', 'Dadra & Nagar Haveli and Daman & Diu',
+        'Delhi (NCT)', 'Jammu & Kashmir', 'Ladakh', 'Lakshadweep', 'Puducherry'
+    ];
+
     const [form, setForm] = useState({ 
         name: '', 
         email: '', 
-        company: '', 
+        state: '', 
         college: '',
         phone: '',
         interest: '', 
         message: '' 
     });
     const [status, setStatus] = useState('idle'); // idle | sending | sent | error
-    const [errorMessage, setErrorMessage] = useState('');
+
+    // Mirror Formspree state into our local status state
+    useEffect(() => {
+        if (state.submitting) {
+            setStatus('sending');
+        } else if (state.succeeded) {
+            setStatus('sent');
+            setForm({ name: '', email: '', state: '', college: '', phone: '', interest: '', message: '' });
+            setTimeout(() => setStatus('idle'), 5000);
+        } else if (state.errors && state.errors.length > 0) {
+            setStatus('error');
+            setTimeout(() => setStatus('idle'), 5000);
+        }
+    }, [state.submitting, state.succeeded, state.errors]);
 
     const handleChange = (e) => {
         setForm({ ...form, [e.target.name]: e.target.value });
@@ -24,55 +50,7 @@ function Enquiry() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         setStatus('sending');
-        setErrorMessage('');
-
-        const webhookUrl = import.meta.env.VITE_N8N_WEBHOOK_URL;
-
-        if (!webhookUrl) {
-            setStatus('error');
-            setErrorMessage('Enquiry automation webhook is not configured. Please contact the administrator.');
-            setTimeout(() => setStatus('idle'), 5000);
-            return;
-        }
-
-        try {
-            const response = await fetch(webhookUrl, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    ...form,
-                    submittedAt: new Date().toISOString()
-                }),
-            });
-
-            // n8n webhooks can return either JSON or raw plain text (e.g. "Workflow started")
-            let data = {};
-            const text = await response.text();
-            try {
-                data = text ? JSON.parse(text) : {};
-            } catch {
-                data = { message: text };
-            }
-
-            if (response.ok) {
-                setStatus('sent');
-                setForm({ name: '', email: '', company: '', college: '', phone: '', interest: '', message: '' });
-                setTimeout(() => setStatus('idle'), 5000);
-            } else {
-                setStatus('error');
-                const fallback = response.status === 429
-                    ? 'Too many requests. Please try again later.'
-                    : (data.message || 'Submission failed. Please try again.');
-                setErrorMessage(fallback);
-                setTimeout(() => setStatus('idle'), 5000);
-            }
-        } catch (error) {
-            setStatus('error');
-            setErrorMessage('Network connection error. Please verify your internet connection.');
-            setTimeout(() => setStatus('idle'), 5000);
-        }
+        await handleFormspreeSubmit(e);
     };
 
     const [copied, setCopied] = useState(false);
@@ -82,6 +60,7 @@ function Enquiry() {
             setTimeout(() => setCopied(false), 2500);
         });
     };
+
 
     return (
         <section className="enq-section" id="enquiry">
@@ -159,8 +138,13 @@ function Enquiry() {
 
                                 <div className="enq-form-grid">
                                     <div className="enq-field">
-                                        <label>Company</label>
-                                        <input type="text" name="company" value={form.company} onChange={handleChange} placeholder="Organization Name" />
+                                        <label>State</label>
+                                        <select name="state" value={form.state} onChange={handleChange} required>
+                                            <option value="">Select your state</option>
+                                            {INDIAN_STATES.map(s => (
+                                                <option key={s} value={s}>{s}</option>
+                                            ))}
+                                        </select>
                                     </div>
                                     <div className="enq-field">
                                         <label>College / University</label>
@@ -173,11 +157,19 @@ function Enquiry() {
                                     <textarea name="message" rows="4" value={form.message} onChange={handleChange} placeholder="How can we help you?" />
                                 </div>
 
-                                {status === 'error' && (
-                                    <div className="enq-error-msg">
-                                        {errorMessage}
-                                    </div>
-                                )}
+                                {/* Formspree field-level & form-level validation errors */}
+                                <ValidationError
+                                    prefix="Email"
+                                    field="email"
+                                    errors={state.errors}
+                                    className="enq-error-msg"
+                                />
+                                <ValidationError
+                                    prefix="Form"
+                                    errors={state.errors}
+                                    className="enq-error-msg"
+                                />
+
 
                                 <button
                                     className={`enq-submit ${status === 'sent' ? 'sent' : ''} ${status === 'error' ? 'error' : ''}`}

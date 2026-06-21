@@ -31,7 +31,7 @@ import { getAssetUrl } from './config/assets';
 function App() {
   useEffect(() => {
     const brandLogo = getAssetUrl('Thread_Security_Logo-1--01 (1).png');
-    const favicon2 = getAssetUrl('Favicon2.png');
+    const favicon2 = getAssetUrl('FaviconTS2.png');
 
     const link = document.getElementById('favicon');
     if (!link) return;

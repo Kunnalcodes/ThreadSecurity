@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import uploadRoutes from './routes/uploadRoutes.js';
+import enquiryRoutes from './routes/enquiryRoutes.js';
 
 // Load environment variables
 dotenv.config();
@@ -16,8 +17,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Upload Route
+// Routes
 app.use('/api/upload', uploadRoutes);
+app.use('/api/enquiry', enquiryRoutes);
+
 
 // Health check endpoint
 app.get('/health', (req, res) => {

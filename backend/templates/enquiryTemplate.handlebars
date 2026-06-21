@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>New Thread Security Enquiry</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #0b0f19;
+      color: #e2e8f0;
+      margin: 0;
+      padding: 0;
+    }
+    .container {
+      max-width: 600px;
+      margin: 40px auto;
+      background: #111827;
+      border: 1px solid #1f2937;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    }
+    .header {
+      background: linear-gradient(135deg, #1e1b4b 0%, #311042 100%);
+      padding: 35px 20px;
+      text-align: center;
+      border-bottom: 2px solid #a855f7;
+    }
+    .header h1 {
+      color: #ffffff;
+      margin: 0;
+      font-size: 24px;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+    }
+    .content {
+      padding: 30px 25px;
+    }
+    .field-row {
+      margin-bottom: 20px;
+      border-bottom: 1px solid #1f2937;
+      padding-bottom: 12px;
+    }
+    .field-row:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+    .label {
+      font-size: 11px;
+      color: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      margin-bottom: 4px;
+    }
+    .value {
+      font-size: 16px;
+      color: #f1f5f9;
+      font-weight: 500;
+    }
+    .message-box {
+      background: #1f2937;
+      border-radius: 8px;
+      padding: 15px;
+      margin-top: 5px;
+      font-size: 15px;
+      color: #cbd5e1;
+      line-height: 1.6;
+      white-space: pre-wrap;
+      border-left: 3px solid #6366f1;
+    }
+    .footer {
+      background-color: #0d111c;
+      padding: 20px;
+      text-align: center;
+      font-size: 12px;
+      color: #64748b;
+      border-top: 1px solid #1f2937;
+    }
+    .footer a {
+      color: #818cf8;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <h1>New Contact Enquiry</h1>
+    </div>
+    <div class="content">
+      <div class="field-row">
+        <div class="label">Full Name</div>
+        <div class="value">{{name}}</div>
+      </div>
+      <div class="field-row">
+        <div class="label">Email Address</div>
+        <div class="value">{{email}}</div>
+      </div>
+      <div class="field-row">
+        <div class="label">Phone Number</div>
+        <div class="value">{{phone}}</div>
+      </div>
+      <div class="field-row">
+        <div class="label">Interested In</div>
+        <div class="value" style="text-transform: capitalize;">{{interest}}</div>
+      </div>
+      {{#if company}}
+      <div class="field-row">
+        <div class="label">Company / Organization</div>
+        <div class="value">{{company}}</div>
+      </div>
+      {{/if}}
+      {{#if college}}
+      <div class="field-row">
+        <div class="label">College / University</div>
+        <div class="value">{{college}}</div>
+      </div>
+      {{/if}}
+      <div class="field-row" style="border-bottom: none;">
+        <div class="label">Message</div>
+        <div class="message-box">{{message}}</div>
+      </div>
+    </div>
+    <div class="footer">
+      This inquiry was submitted on <strong>{{submittedAt}}</strong> via the <a href="https://threadsecurity.in">Thread Security</a> website contact form.
+    </div>
+  </div>
+</body>
+</html>
